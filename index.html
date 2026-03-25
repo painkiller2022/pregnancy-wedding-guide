@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>孕期婚礼筹备指南</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#6366f1;--primary-light:#818cf8;--primary-bg:#eef2ff;
+  --accent:#f43f5e;--accent-light:#fb7185;--accent-bg:#fff1f2;
+  --success:#10b981;--success-bg:#ecfdf5;
+  --warning:#f59e0b;--warning-bg:#fffbeb;
+  --dark:#1a1a2e;--text:#334155;--text-light:#64748b;
+  --bg:#f8f9fa;--card:#ffffff;--border:#e2e8f0;
+  --radius:12px;--radius-sm:8px;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px rgba(0,0,0,.1),0 4px 6px rgba(0,0,0,.05);
+  --tab-h:60px;
+}
+html{font-size:16px;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
+  padding-bottom:calc(var(--tab-h) + env(safe-area-inset-bottom,0px));
+}
+/* ===== Tab Navigation ===== */
+.tab-bar{position:fixed;bottom:0;left:0;right:0;height:var(--tab-h);
+  background:var(--card);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;
+  z-index:100;padding-bottom:env(safe-area-inset-bottom,0px);
+  box-shadow:0 -2px 10px rgba(0,0,0,.06);
+}
+.tab-btn{display:flex;flex-direction:column;align-items:center;gap:2px;
+  background:none;border:none;font-size:11px;color:var(--text-light);
+  cursor:pointer;padding:6px 0;min-width:56px;transition:color .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab-btn .tab-icon{font-size:22px;line-height:1}
+.tab-btn.active{color:var(--primary)}
+.tab-btn.active .tab-icon{transform:scale(1.1)}
+
+/* ===== Pages ===== */
+.page{display:none;padding:16px 16px 24px;max-width:640px;margin:0 auto;
+  animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== Header ===== */
+.page-header{text-align:center;padding:20px 0 16px}
+.page-header h1{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.page-header p{font-size:13px;color:var(--text-light)}
+
+/* ===== Cards ===== */
+.card{background:var(--card);border-radius:var(--radius);padding:16px;
+  box-shadow:var(--shadow);margin-bottom:12px;transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shadow-md)}
+
+/* ===== Countdown ===== */
+.countdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.countdown-card{border-radius:var(--radius);padding:20px 12px;text-align:center;position:relative;overflow:hidden}
+.countdown-card.wedding{background:linear-gradient(135deg,#6366f1,#818cf8)}
+.countdown-card.baby{background:linear-gradient(135deg,#f43f5e,#fb7185)}
+.countdown-card .cd-label{font-size:12px;color:rgba(255,255,255,.85);margin-bottom:4px}
+.countdown-card .cd-num{font-size:42px;font-weight:800;color:#fff;line-height:1.1}
+.countdown-card .cd-unit{font-size:14px;color:rgba(255,255,255,.9);margin-top:2px}
+
+.week-info{text-align:center;margin-bottom:16px}
+.week-badge{display:inline-block;background:var(--primary-bg);color:var(--primary);
+  font-weight:700;font-size:18px;padding:8px 20px;border-radius:24px}
+.week-sub{color:var(--text-light);font-size:13px;margin-top:6px}
+
+.baby-size{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.baby-emoji{font-size:42px;line-height:1}
+.baby-text h3{font-size:15px;color:var(--dark);margin-bottom:2px}
+.baby-text p{font-size:13px;color:var(--text-light)}
+
+.progress-section{margin-top:4px}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light);margin-bottom:6px}
+.progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;transition:width .6s ease;
+  background:linear-gradient(90deg,var(--primary),var(--accent))}
+
+/* ===== Timeline ===== */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:16px}
+.tl-dot{position:absolute;left:-28px;top:4px;width:22px;height:22px;border-radius:50%;
+  background:var(--card);border:2px solid var(--border);display:flex;align-items:center;
+  justify-content:center;font-size:10px;z-index:2;transition:all .3s}
+.tl-item.current .tl-dot{border-color:var(--primary);background:var(--primary);box-shadow:0 0 0 4px var(--primary-bg)}
+.tl-item.past .tl-dot{border-color:var(--success);background:var(--success-bg)}
+.tl-item.current .tl-dot::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%}
+.tl-month{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px}
+.tl-week{font-size:11px;color:var(--text-light);margin-bottom:8px}
+.tl-content{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tl-col{border-radius:var(--radius-sm);padding:10px;font-size:12px;line-height:1.6}
+.tl-col.pregnancy{background:var(--accent-bg)}
+.tl-col.wedding-col{background:var(--primary-bg)}
+.tl-col h4{font-size:11px;font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.tl-col.pregnancy h4{color:var(--accent)}
+.tl-col.wedding-col h4{color:var(--primary)}
+.tl-col ul{list-style:none;padding:0}
+.tl-col li{padding:2px 0;color:var(--text)}
+.tl-col li::before{margin-right:4px}
+.tl-detail{display:none;margin-top:8px;padding:10px;background:var(--bg);
+  border-radius:var(--radius-sm);font-size:12px;color:var(--text-light);line-height:1.7}
+.tl-item.expanded .tl-detail{display:block;animation:fadeIn .3s}
+.tl-toggle{font-size:11px;color:var(--primary);cursor:pointer;margin-top:6px;
+  display:inline-block;border:none;background:none;padding:0}
+
+/* ===== Checklist ===== */
+.checklist-group{margin-bottom:16px}
+.group-header{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;background:var(--card);border-radius:var(--radius);
+  box-shadow:var(--shadow);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.group-header h3{font-size:15px;font-weight:600;color:var(--dark)}
+.group-header .group-progress{font-size:12px;color:var(--text-light)}
+.group-header .group-arrow{transition:transform .3s;font-size:14px}
+.checklist-group.collapsed .group-arrow{transform:rotate(-90deg)}
+.group-items{padding:8px 0}
+.checklist-group.collapsed .group-items{display:none}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;
+  border-bottom:1px solid var(--border);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:background .15s}
+.check-item:hover{background:var(--bg)}
+.check-item:last-child{border-bottom:none}
+.check-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;margin-top:1px}
+.check-item.done .check-box{background:var(--success);border-color:var(--success)}
+.check-item.done .check-box::after{content:'✓';color:#fff;font-size:12px;font-weight:700}
+.check-item.done .check-label{color:var(--text-light);text-decoration:line-through}
+.check-label{font-size:13px;flex:1}
+.check-tag{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;flex-shrink:0;margin-top:2px}
+.check-tag.prenatal{background:var(--accent-bg);color:var(--accent)}
+.check-tag.wedding-tag{background:var(--primary-bg);color:var(--primary)}
+
+.group-progress-bar{margin:0 16px 4px;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.group-progress-fill{height:100%;background:var(--success);border-radius:2px;transition:width .4s}
+
+/* ===== Knowledge Cards ===== */
+.filter-bar{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);
+  background:var(--card);font-size:12px;color:var(--text-light);cursor:pointer;
+  white-space:nowrap;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.knowledge-card{background:var(--card);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);margin-bottom:10px}
+.kc-header{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kc-header h3{font-size:14px;font-weight:600;color:var(--dark);display:flex;align-items:center;gap:8px}
+.kc-header .kc-arrow{font-size:12px;transition:transform .3s;color:var(--text-light)}
+.knowledge-card.expanded .kc-arrow{transform:rotate(180deg)}
+.kc-body{display:none;padding:0 16px 14px;font-size:13px;line-height:1.8}
+.knowledge-card.expanded .kc-body{display:block;animation:fadeIn .2s}
+.kc-body .tip-good{color:var(--success)}
+.kc-body .tip-bad{color:var(--accent)}
+.kc-body p{margin-bottom:6px}
+.kc-body ul{padding-left:0;list-style:none}
+.kc-body li{padding:2px 0}
+.kc-cat{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+.kc-cat.cat-diet{background:#fef3c7;color:#b45309}
+.kc-cat.cat-exercise{background:#d1fae5;color:#065f46}
+.kc-cat.cat-checkup{background:#dbeafe;color:#1e40af}
+.kc-cat.cat-taboo{background:#fee2e2;color:#991b1b}
+.kc-cat.cat-wedding{background:#ede9fe;color:#5b21b6}
+.kc-cat.cat-culture{background:#fce7f3;color:#9d174d}
+
+/* ===== Hospital Bag ===== */
+.bag-section{margin-bottom:20px}
+.bag-title{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;
+  color:var(--dark);margin-bottom:6px}
+.bag-progress-info{display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--text-light);margin-bottom:6px}
+.bag-items{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.bag-item{display:flex;align-items:center;gap:10px;padding:12px 16px;
+  border-bottom:1px solid var(--border);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:background .15s}
+.bag-item:last-child{border-bottom:none}
+.bag-item:hover{background:var(--bg)}
+.bag-item.done{background:var(--success-bg)}
+.bag-item.done .bag-name{color:var(--text-light);text-decoration:line-through}
+.bag-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bag-item.done .bag-check{background:var(--success);border-color:var(--success)}
+.bag-item.done .bag-check::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.bag-name{font-size:13px;flex:1}
+.bag-note{font-size:11px;color:var(--text-light);max-width:120px;text-align:right}
+
+/* ===== Budget ===== */
+.budget-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.budget-total{grid-column:1/-1;background:linear-gradient(135deg,var(--dark),#2d2b55);
+  border-radius:var(--radius);padding:18px;text-align:center;color:#fff}
+.budget-total .bt-label{font-size:12px;opacity:.8;margin-bottom:2px}
+.budget-total .bt-num{font-size:32px;font-weight:800}
+.budget-total .bt-sub{font-size:12px;opacity:.7;margin-top:4px}
+.budget-mini{background:var(--card);border-radius:var(--radius);padding:14px;text-align:center;
+  box-shadow:var(--shadow)}
+.budget-mini .bm-label{font-size:11px;color:var(--text-light);margin-bottom:2px}
+.budget-mini .bm-num{font-size:20px;font-weight:700}
+.budget-mini .bm-num.spent{color:var(--accent)}
+.budget-mini .bm-num.remain{color:var(--success)}
+
+.budget-cat{margin-bottom:14px}
+.budget-cat-header{display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:var(--card);border-radius:var(--radius) var(--radius) 0 0;
+  box-shadow:var(--shadow);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.budget-cat-header h3{font-size:14px;font-weight:600;color:var(--dark);display:flex;align-items:center;gap:6px}
+.budget-cat-header .bcat-total{font-size:13px;font-weight:700;color:var(--primary)}
+.budget-cat-header .bcat-arrow{font-size:12px;transition:transform .3s;color:var(--text-light);margin-left:6px}
+.budget-cat.collapsed .bcat-arrow{transform:rotate(-90deg)}
+.budget-cat.collapsed .budget-items-wrap{display:none}
+.budget-items-wrap{background:var(--card);border-radius:0 0 var(--radius) var(--radius);
+  box-shadow:var(--shadow);overflow:hidden}
+.budget-row{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  border-top:1px solid var(--border);font-size:13px}
+.budget-row .br-name{flex:1;color:var(--text)}
+.budget-row .br-est{color:var(--text-light);font-size:12px;min-width:70px;text-align:right}
+.budget-row .br-actual{width:90px}
+.budget-row .br-actual input{width:100%;padding:6px 8px;border:1px solid var(--border);
+  border-radius:var(--radius-sm);font-size:13px;text-align:right;outline:none;
+  transition:border-color .2s;color:var(--text)}
+.budget-row .br-actual input:focus{border-color:var(--primary)}
+.budget-row .br-actual input::placeholder{color:#ccc}
+
+.budget-add-row{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--border)}
+.budget-add-row input{flex:1;padding:6px 8px;border:1px solid var(--border);
+  border-radius:var(--radius-sm);font-size:12px;outline:none}
+.budget-add-row input:focus{border-color:var(--primary)}
+.budget-add-row button{padding:6px 12px;background:var(--primary);color:#fff;
+  border:none;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;white-space:nowrap}
+
+.budget-bar-wrap{margin:0 14px 8px}
+.budget-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-light);margin-bottom:3px}
+.budget-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.budget-bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.budget-bar-fill.under{background:var(--success)}
+.budget-bar-fill.over{background:var(--accent)}
+
+.budget-note{font-size:11px;color:var(--text-light);text-align:center;padding:8px 0}
+
+/* ===== Settings Modal ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);
+  z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:var(--radius);padding:24px;
+  width:100%;max-width:380px;box-shadow:var(--shadow-lg);animation:fadeIn .2s}
+.modal h2{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:16px;text-align:center}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.form-group input{width:100%;padding:10px 12px;border:1px solid var(--border);
+  border-radius:var(--radius-sm);font-size:14px;color:var(--text);outline:none;
+  transition:border-color .2s}
+.form-group input:focus{border-color:var(--primary)}
+.btn-row{display:flex;gap:10px;margin-top:20px}
+.btn{flex:1;padding:10px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-light)}
+.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border)}
+.btn-reset{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent)}
+
+.settings-trigger{position:fixed;top:12px;right:12px;z-index:50;width:36px;height:36px;
+  border-radius:50%;background:var(--card);border:1px solid var(--border);
+  box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer}
+
+/* ===== Disclaimer ===== */
+.disclaimer{text-align:center;font-size:11px;color:var(--text-light);padding:20px 16px 8px;
+  border-top:1px solid var(--border);margin-top:20px}
+
+/* ===== Desktop responsive ===== */
+@media(min-width:768px){
+  body{padding-bottom:0}
+  .tab-bar{position:fixed;top:0;bottom:auto;border-top:none;border-bottom:1px solid var(--border);
+    box-shadow:0 2px 10px rgba(0,0,0,.06);height:52px}
+  .tab-btn{flex-direction:row;gap:6px;font-size:13px}
+  .tab-btn .tab-icon{font-size:18px}
+  .tab-btn{min-width:48px;font-size:12px}
+  .page{padding-top:68px;max-width:680px}
+  .settings-trigger{top:64px}
+  .countdown-card .cd-num{font-size:52px}
+}
+</style>
+</head>
+<body>
+
+<!-- Settings Button -->
+<button class="settings-trigger" onclick="openSettings()" aria-label="设置">⚙️</button>
+
+<!-- ===== Tab 1: Home / Countdown ===== -->
+<div class="page active" id="page-home">
+  <div class="page-header">
+    <h1>👶 孕期 & 婚礼筹备</h1>
+    <p>柯尔克孜族 × 汉族 · 幸福倒计时</p>
+  </div>
+
+  <div class="countdown-grid">
+    <div class="countdown-card wedding">
+      <div class="cd-label">距简阳婚礼</div>
+      <div class="cd-num" id="cd-wedding">--</div>
+      <div class="cd-unit">天</div>
+    </div>
+    <div class="countdown-card baby">
+      <div class="cd-label">距离预产期</div>
+      <div class="cd-num" id="cd-baby">--</div>
+      <div class="cd-unit">天</div>
+    </div>
+  </div>
+
+  <div class="week-info">
+    <div class="week-badge" id="week-badge">孕 -- 周 -- 天</div>
+    <div class="week-sub" id="week-sub"></div>
+  </div>
+
+  <div class="card baby-size" id="baby-size-card">
+    <div class="baby-emoji" id="baby-emoji">🫘</div>
+    <div class="baby-text">
+      <h3 id="baby-size-title">加载中...</h3>
+      <p id="baby-size-desc">正在计算</p>
+    </div>
+  </div>
+
+  <div class="card progress-section">
+    <div class="progress-label">
+      <span>孕期进度</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">⚕️ 本应用仅供参考，具体请以医生建议为准</div>
+</div>
+
+<!-- ===== Tab 2: Timeline ===== -->
+<div class="page" id="page-timeline">
+  <div class="page-header">
+    <h1>📅 时间轴</h1>
+    <p>孕期产检 & 婚礼筹备 全览</p>
+  </div>
+  <div class="timeline" id="timeline-container"></div>
+  <div class="disclaimer">⚕️ 产检时间为一般性建议，具体安排请遵医嘱</div>
+</div>
+
+<!-- ===== Tab 3: Checklist ===== -->
+<div class="page" id="page-checklist">
+  <div class="page-header">
+    <h1>✅ 待办清单</h1>
+    <p>勾选已完成的任务，进度自动保存</p>
+  </div>
+  <div id="checklist-container"></div>
+  <div class="disclaimer">⚕️ 本应用仅供参考，具体请以医生建议为准</div>
+</div>
+
+<!-- ===== Tab 4: Knowledge ===== -->
+<div class="page" id="page-knowledge">
+  <div class="page-header">
+    <h1>📖 知识卡片</h1>
+    <p>孕期注意事项 一卡掌握</p>
+  </div>
+  <div class="filter-bar" id="filter-bar"></div>
+  <div id="knowledge-container"></div>
+  <div class="disclaimer">⚕️ 本应用仅供参考，具体请以医生建议为准</div>
+</div>
+
+<!-- ===== Tab 5: Hospital Bag ===== -->
+<div class="page" id="page-bag">
+  <div class="page-header">
+    <h1>🎒 待产包</h1>
+    <p>提前准备，安心待产</p>
+  </div>
+  <div id="bag-container"></div>
+  <div class="disclaimer">⚕️ 物品清单仅供参考，请根据医院要求调整</div>
+</div>
+
+<!-- ===== Tab 6: Budget ===== -->
+<div class="page" id="page-budget">
+  <div class="page-header">
+    <h1>💰 预算管理</h1>
+    <p>记录和追踪各项花费</p>
+  </div>
+  <div id="budget-container"></div>
+  <div class="disclaimer">💡 金额可自由编辑，数据自动保存在本地</div>
+</div>
+
+<!-- ===== Tab Bar ===== -->
+<nav class="tab-bar">
+  <button class="tab-btn active" data-page="home"><span class="tab-icon">🏠</span>首页</button>
+  <button class="tab-btn" data-page="timeline"><span class="tab-icon">📅</span>时间轴</button>
+  <button class="tab-btn" data-page="checklist"><span class="tab-icon">✅</span>待办</button>
+  <button class="tab-btn" data-page="knowledge"><span class="tab-icon">📖</span>知识</button>
+  <button class="tab-btn" data-page="bag"><span class="tab-icon">🎒</span>待产包</button>
+  <button class="tab-btn" data-page="budget"><span class="tab-icon">💰</span>预算</button>
+</nav>
+
+<!-- ===== Settings Modal ===== -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <h2>⚙️ 日期设置</h2>
+    <div class="form-group">
+      <label>末次月经日期 (LMP)</label>
+      <input type="date" id="input-lmp">
+    </div>
+    <div class="form-group">
+      <label>婚礼日期</label>
+      <input type="date" id="input-wedding">
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="closeSettings()">取消</button>
+      <button class="btn btn-primary" onclick="saveSettings()">保存</button>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn btn-reset" style="width:100%" onclick="resetAll()">🗑️ 重置所有数据</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================================================================
+// 1. STATE & CONFIG
+// ===================================================================
+const STORAGE_KEY = 'pwg_state';
+const DEFAULT_STATE = {
+  lmpDate: '2026-02-14',
+  weddingDate: '2026-06-28',
+  checklist: {},
+  bag: {},
+  budgetActual: {},
+  budgetCustom: {}
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { ...DEFAULT_STATE, ...parsed };
+    }
+  } catch(e) { /* ignore */ }
+  return { ...DEFAULT_STATE };
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+let state = loadState();
+
+// ===================================================================
+// 2. DATE UTILITIES
+// ===================================================================
+function daysBetween(a, b) {
+  const msPerDay = 86400000;
+  const ua = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const ub = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+  return Math.round((ub - ua) / msPerDay);
+}
+
+function getEDD(lmp) {
+  const d = new Date(lmp);
+  d.setDate(d.getDate() + 280);
+  return d;
+}
+
+function getWeekDay(lmp, today) {
+  const days = daysBetween(new Date(lmp), today);
+  if (days < 0) return { week: 0, day: 0, totalDays: 0 };
+  return { week: Math.floor(days / 7), day: days % 7, totalDays: days };
+}
+
+function formatDate(d) {
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+}
+
+// ===================================================================
+// 3. BABY SIZE DATA (per week)
+// ===================================================================
+const BABY_SIZES = [
+  null, // week 0
+  { emoji:'🔬', name:'受精卵', size:'0.1mm', desc:'比针尖还小' },
+  { emoji:'🔬', name:'胚胎', size:'0.2mm', desc:'正在快速分裂' },
+  { emoji:'🌰', name:'小胚泡', size:'0.3mm', desc:'已着床在子宫壁上' },
+  { emoji:'🌾', name:'小种子', size:'1mm', desc:'像一粒罂粟籽' },
+  { emoji:'🫘', name:'小豆芽', size:'2mm', desc:'像一颗芝麻' },
+  { emoji:'🫘', name:'小扁豆', size:'5mm', desc:'像一颗扁豆大小' },
+  { emoji:'🫐', name:'蓝莓', size:'1.3cm', desc:'心脏开始跳动了' },
+  { emoji:'🍇', name:'葡萄', size:'1.6cm', desc:'像一颗葡萄，小手小脚在长' },
+  { emoji:'🫒', name:'橄榄', size:'2.3cm', desc:'像一颗橄榄' },
+  { emoji:'🍊', name:'金桔', size:'3cm', desc:'像一颗金桔，能做鬼脸了' },
+  { emoji:'🍋', name:'无花果', size:'4cm', desc:'像一个无花果大小' },
+  { emoji:'🍑', name:'百香果', size:'5.4cm', desc:'像百香果，手指脚趾已分开' },
+  { emoji:'🍋', name:'柠檬', size:'7cm', desc:'像一个柠檬，开始有指纹了' },
+  { emoji:'🍊', name:'油桃', size:'8.5cm', desc:'像一颗油桃' },
+  { emoji:'🍎', name:'苹果', size:'10cm', desc:'像一个苹果大小' },
+  { emoji:'🥑', name:'牛油果', size:'11.5cm', desc:'像一个牛油果，能感受到胎动了' },
+  { emoji:'🥕', name:'胡萝卜', size:'13cm', desc:'像一根胡萝卜长' },
+  { emoji:'🫑', name:'甜椒', size:'14cm', desc:'像一个甜椒大小' },
+  { emoji:'🥭', name:'芒果', size:'15cm', desc:'像一个大芒果' },
+  { emoji:'🍌', name:'香蕉', size:'25cm', desc:'从头到脚像一根香蕉长了' },
+  { emoji:'🥥', name:'椰子', size:'27cm', desc:'像一个椰子大小' },
+  { emoji:'🌽', name:'玉米', size:'28cm', desc:'像一根玉米' },
+  { emoji:'🍆', name:'茄子', size:'29cm', desc:'像一根大茄子' },
+  { emoji:'🌻', name:'向日葵', size:'30cm', desc:'差不多一尺长了' },
+  { emoji:'🥦', name:'花菜', size:'35cm', desc:'像一大朵花菜' },
+  { emoji:'🥬', name:'大白菜', size:'36cm', desc:'像一颗大白菜' },
+  { emoji:'🥒', name:'丝瓜', size:'37cm', desc:'像一根丝瓜' },
+  { emoji:'🍈', name:'哈密瓜', size:'38cm', desc:'像一个小哈密瓜' },
+  { emoji:'🎃', name:'南瓜', size:'39cm', desc:'像一个小南瓜' },
+  { emoji:'🥬', name:'大白菜', size:'40cm', desc:'像一棵大白菜' },
+  { emoji:'🍉', name:'小西瓜', size:'41cm', desc:'像一个小西瓜' },
+  { emoji:'🍉', name:'西瓜', size:'42cm', desc:'快到西瓜大小了' },
+  { emoji:'🍍', name:'菠萝', size:'44cm', desc:'像一个大菠萝' },
+  { emoji:'🍈', name:'蜜瓜', size:'45cm', desc:'像一个蜜瓜' },
+  { emoji:'🎃', name:'大南瓜', size:'46cm', desc:'像一个大南瓜' },
+  { emoji:'🍈', name:'冬瓜', size:'47cm', desc:'像半个冬瓜' },
+  { emoji:'🍉', name:'大西瓜', size:'48cm', desc:'接近足月啦！' },
+  { emoji:'🍉', name:'大西瓜', size:'49cm', desc:'随时可能发动！' },
+  { emoji:'🍉', name:'大西瓜', size:'50cm', desc:'足月啦！' },
+  { emoji:'👶', name:'新生儿', size:'50cm', desc:'平均约3.3kg，期待见面！' },
+];
+
+// ===================================================================
+// 4. TIMELINE DATA
+// ===================================================================
+const TIMELINE_DATA = [
+  {
+    month: 3, label: '3月', weeks: '5-8周',
+    pregnancy: ['首次产检（B超确认宫内妊娠、胎心胎芽）','医院建档（建小卡）','开始补充叶酸 0.4mg/天'],
+    wedding: ['双方父母电话/视频沟通','初步商定两地婚礼安排','领结婚证'],
+    detail: '孕早期是胚胎发育关键时期，需避免接触有害物质。首次产检建议6-8周进行，主要通过B超确认宫内妊娠和胎心搏动。建档需要携带身份证、结婚证、社保卡。由于简阳与克州相距较远，建议先通过视频让双方家长了解彼此。'
+  },
+  {
+    month: 4, label: '4月', weeks: '9-12周',
+    pregnancy: ['常规产检（血常规、尿常规等）','早孕反应可能仍较明显','继续补充叶酸'],
+    wedding: ['双方家长见面、商定婚期','男方家赴简阳提亲（库达拉舒）','商定聘礼（卡凌）事宜','预订两地婚宴场地'],
+    detail: '孕8-10周通常是孕吐最严重的时候，少食多餐可缓解。提亲（库达拉舒）是柯尔克孜族重要的家族仪式，男方派长辈代表前往女方家正式提亲，建立两个家族间的亲缘关系（库达）。热门的6-7月档期需要两地同步尽早锁定。'
+  },
+  {
+    month: 5, label: '5月', weeks: '11-15周',
+    pregnancy: ['NT检查（11-13⁺⁶周，排畸第一关）','NIPT无创DNA（12-16周，建议此期间完成）','早孕反应逐渐消退'],
+    wedding: ['拍婚纱照（14-16周，状态最好）','预订克州婚庆及库姆孜艺人','定制柯尔克孜传统婚服'],
+    detail: 'NT检查需提前预约，检查颈项透明层厚度，是重要的早期排畸指标。NIPT无创DNA准确率>99%，抽血即可，建议12-16周完成。婚纱照建议选在14周后，肚子不明显且精力恢复。柯尔克孜传统婚服需提前定制：新娘白色嫁衣配高帽和银饰，新郎传统礼服配白毡帽（ak-kalpak）。'
+  },
+  {
+    month: 6, label: '6月', weeks: '16-19周',
+    pregnancy: ['常规产检','可能开始感受到胎动（初产妇通常18-20周）','开始涂妊娠纹预防霜/油'],
+    wedding: ['发送两地请柬（电子+纸质）','确认简阳婚宴菜单','准备婚礼物料（喜糖、红包、伴手礼）','🎊 6月28日 简阳婚礼（汉式，约19周）'],
+    detail: '简阳婚礼（汉式）当天注意：穿舒适平底鞋（≤3cm），婚纱选高腰A字型；流程控制在3小时内；每隔1小时休息15分钟；以茶代酒；准备新娘专属休息室和应急包（零食、水、湿巾）；禁止任何婚闹环节。可在婚宴中加入新疆特色菜（大盘鸡等），展现两族文化融合。'
+  },
+  {
+    month: 7, label: '7月', weeks: '20-23周',
+    pregnancy: ['大排畸四维/三维B超（20-24周，最重要的排畸检查）','预约需提前1-2个月'],
+    wedding: ['🎊 7月4日 克州婚礼（柯尔克孜民俗式，约20周）','揭面纱仪式（别特阿恰尔）','库姆孜弹唱、对歌、民族歌舞','赛马/叼羊等民俗活动'],
+    detail: '克州婚礼流程：新娘出嫁仪式→送亲队伍出发→到达婚宴场地→揭面纱仪式（嫂子或婶婶用木勺挑开面纱，寓意新生活开始）→开席（整羊、手抓饭、包尔萨克）→库姆孜弹唱→对歌→民族歌舞→户外赛马/叼羊。新娘注意：仍需每小时休息，以茶代酒，避免长时间站立。大排畸可安排在婚礼前后一周完成。'
+  },
+  {
+    month: 8, label: '8月', weeks: '24-27周',
+    pregnancy: ['糖耐量测试 OGTT（24-28周，筛查妊娠糖尿病）','开始补钙（每天1000mg，遵医嘱）','根据血常规结果，医生可能建议补铁'],
+    wedding: ['布置婴儿房/新房（避免亲自接触油漆甲醛）','预订月嫂（提前3-4个月）'],
+    detail: '糖耐测试需空腹抽血，然后喝75g葡萄糖水，分别在1小时和2小时后各抽血一次。若确诊妊娠糖尿病，需控制饮食并定期监测血糖。补钙建议选择钙+维生素D复合制剂，具体剂量遵医嘱。'
+  },
+  {
+    month: 9, label: '9月', weeks: '28-31周',
+    pregnancy: ['进入孕晚期，每2周产检一次（28周起）','B超复查评估胎儿发育','开始数胎动（早中晚各1小时，每小时≥3次为正常）','建议28周后开始习惯左侧卧位'],
+    wedding: ['准备待产包（详见待产包清单）','报名孕妇学校/分娩课程'],
+    detail: '28周进入孕晚期，产检频率增加到每2周一次。数胎动很重要：每天固定时间数，如果2小时内胎动少于6次，需及时就医。左侧卧位可改善子宫血流，降低仰卧位低血压综合征风险。'
+  },
+  {
+    month: 10, label: '10月', weeks: '32-36周',
+    pregnancy: ['每周产检（36周起）','GBS筛查 B族链球菌（35-37周）','胎心监护（36周起每次产检）','了解产兆：见红、破水、规律宫缩'],
+    wedding: ['确认分娩医院，了解无痛分娩选项','提前了解麻醉评估预约流程','确保手机畅通、车加满油', '学习拉玛泽呼吸法'],
+    detail: '36周起每周产检，主要监测胎心、胎位、血压、体重。GBS阳性者分娩时需使用抗生素预防新生儿感染。了解产兆很重要：规律宫缩（每5分钟一次，持续1小时）应去医院；破水后立即平躺并尽快就医；少量见红可观察，大量出血立即就医。'
+  },
+  {
+    month: 11, label: '11月', weeks: '37-40周',
+    pregnancy: ['足月（37周起）','预产期：11月21日','随时可能发动，做好入院准备'],
+    wedding: [],
+    detail: '⚠️ 警惕危险信号，以下情况立即就医：阴道大量出血；持续剧烈头痛或视物模糊（先兆子痫）；胎动明显减少或消失；破水（不论有无宫缩）。保持电话畅通，医院路线提前规划好，待产包放在车上随时出发。'
+  }
+];
+
+// ===================================================================
+// 5. CHECKLIST DATA
+// ===================================================================
+const CHECKLIST_DATA = [
+  {
+    group: '孕早期（1-12周）', id: 'early',
+    items: [
+      { id:'e1', label:'首次产检 & B超确认', tag:'prenatal' },
+      { id:'e2', label:'医院建档（建小卡）', tag:'prenatal' },
+      { id:'e3', label:'开始补充叶酸 0.4mg/天', tag:'prenatal' },
+      { id:'e4', label:'NT检查（11-13⁺⁶周）', tag:'prenatal' },
+      { id:'e5', label:'NIPT无创DNA检查', tag:'prenatal' },
+      { id:'e6', label:'双方父母正式沟通', tag:'wedding' },
+      { id:'e7', label:'领结婚证', tag:'wedding' },
+      { id:'e8', label:'男方家赴简阳提亲（库达拉舒）', tag:'wedding' },
+      { id:'e9', label:'商定聘礼（卡凌）', tag:'wedding' },
+      { id:'e10', label:'预订简阳婚宴场地', tag:'wedding' },
+      { id:'e11', label:'预订克州婚宴场地', tag:'wedding' },
+    ]
+  },
+  {
+    group: '孕中期（13-28周）', id: 'mid',
+    items: [
+      { id:'m1', label:'拍婚纱照（14-16周最佳）', tag:'wedding' },
+      { id:'m2', label:'定制柯尔克孜传统婚服', tag:'wedding' },
+      { id:'m3', label:'购买婚戒', tag:'wedding' },
+      { id:'m4', label:'大排畸四维B超（20-24周）', tag:'prenatal' },
+      { id:'m5', label:'糖耐量测试 OGTT（24-28周）', tag:'prenatal' },
+      { id:'m6', label:'发送两地婚礼请柬', tag:'wedding' },
+      { id:'m7', label:'确认简阳婚宴菜单', tag:'wedding' },
+      { id:'m8', label:'预订库姆孜艺人+歌舞表演', tag:'wedding' },
+      { id:'m9', label:'预订机票（成都↔克州）', tag:'wedding' },
+      { id:'m10', label:'简阳婚礼 🎊（6.28）', tag:'wedding' },
+      { id:'m11', label:'克州婚礼 🎊（7.4）', tag:'wedding' },
+      { id:'m12', label:'预订月嫂', tag:'wedding' },
+      { id:'m13', label:'布置婴儿房', tag:'wedding' },
+      { id:'m14', label:'开始补钙（遵医嘱）', tag:'prenatal' },
+    ]
+  },
+  {
+    group: '孕晚期（29-40周）', id: 'late',
+    items: [
+      { id:'l1', label:'准备待产包', tag:'prenatal' },
+      { id:'l2', label:'参加分娩课程/孕妇学校', tag:'prenatal' },
+      { id:'l3', label:'GBS筛查（35-37周）', tag:'prenatal' },
+      { id:'l4', label:'确定分娩医院', tag:'prenatal' },
+      { id:'l5', label:'了解无痛分娩选项', tag:'prenatal' },
+      { id:'l6', label:'学习拉玛泽呼吸法', tag:'prenatal' },
+      { id:'l7', label:'麻醉评估预约', tag:'prenatal' },
+      { id:'l8', label:'安装婴儿安全座椅', tag:'wedding' },
+      { id:'l9', label:'待产包放车上', tag:'prenatal' },
+      { id:'l10', label:'保持手机畅通 & 车加满油', tag:'prenatal' },
+    ]
+  }
+];
+
+// ===================================================================
+// 6. KNOWLEDGE CARDS DATA
+// ===================================================================
+const KNOWLEDGE_DATA = [
+  {
+    cat:'diet', catLabel:'饮食营养', title:'孕早期饮食要点', icon:'🥗',
+    body:`<ul>
+      <li class="tip-good">✅ 每天补充叶酸 0.4mg，预防神经管缺陷</li>
+      <li class="tip-good">✅ 少食多餐缓解孕吐，苏打饼干、酸味食物可帮助</li>
+      <li class="tip-good">✅ 多吃富含蛋白质的食物（鸡蛋、鱼、豆类）</li>
+      <li class="tip-bad">❌ 禁止饮酒，酒精对胎儿发育有严重影响</li>
+      <li class="tip-bad">❌ 避免生食（生鱼片、半熟肉、未消毒奶制品）</li>
+      <li class="tip-bad">❌ 咖啡因控制在每天200mg以内（约1杯咖啡）</li>
+      <li class="tip-bad">❌ 避免高汞鱼类（鲨鱼、剑鱼、方头鱼）</li>
+    </ul>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'孕中晚期营养补充', icon:'💊',
+    body:`<ul>
+      <li class="tip-good">✅ 补钙：每天1000mg，可选钙+维生素D复合制剂（遵医嘱）</li>
+      <li class="tip-good">✅ 补铁：根据血常规结果，若有贫血倾向遵医嘱补充</li>
+      <li class="tip-good">✅ DHA：每天200-300mg，有助于胎儿大脑发育</li>
+      <li class="tip-good">✅ 适量增加蛋白质摄入（比孕前多15-25g/天）</li>
+      <li class="tip-bad">❌ 控制精制糖摄入，预防妊娠糖尿病</li>
+      <li class="tip-bad">❌ 避免过量进食，BMI正常者孕中晚期每周增重0.35-0.5kg</li>
+    </ul>`
+  },
+  {
+    cat:'exercise', catLabel:'运动建议', title:'孕期运动指南', icon:'🧘‍♀️',
+    body:`<ul>
+      <li class="tip-good">✅ 散步：最安全的运动方式，每天30分钟</li>
+      <li class="tip-good">✅ 孕妇瑜伽：增强柔韧性，有助于分娩</li>
+      <li class="tip-good">✅ 游泳：减轻关节负担，水中浮力让孕妈更舒适</li>
+      <li class="tip-good">✅ 凯格尔运动：锻炼盆底肌，有助于产后恢复</li>
+      <li class="tip-bad">❌ 避免剧烈运动（跑跳、球类、骑马等）</li>
+      <li class="tip-bad">❌ 避免仰卧位运动（孕中期后）</li>
+      <li class="tip-bad">❌ 运动中如感到头晕、气短、出血，立即停止</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:12px;margin-top:6px">※ 有先兆流产、前置胎盘等情况需遵医嘱决定是否运动</p>`
+  },
+  {
+    cat:'checkup', catLabel:'产检指南', title:'重要产检时间节点', icon:'🏥',
+    body:`<ul>
+      <li><strong>6-8周</strong>：首次产检，B超确认宫内妊娠、胎心胎芽</li>
+      <li><strong>11-13⁺⁶周</strong>：NT检查（颈项透明层），排畸第一关</li>
+      <li><strong>12-16周</strong>：NIPT无创DNA，准确率>99%</li>
+      <li><strong>20-24周</strong>：大排畸（四维/三维B超），最重要的排畸检查</li>
+      <li><strong>24-28周</strong>：糖耐量测试OGTT，筛查妊娠糖尿病</li>
+      <li><strong>28-36周</strong>：每2周产检一次</li>
+      <li><strong>35-37周</strong>：GBS筛查（B族链球菌）</li>
+      <li><strong>36周起</strong>：每周产检 + 胎心监护</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:12px;margin-top:6px">※ NT和NIPT需提前预约，热门医院名额紧张</p>`
+  },
+  {
+    cat:'taboo', catLabel:'日常禁忌', title:'孕期必须避免的事项', icon:'⚠️',
+    body:`<ul>
+      <li class="tip-bad">❌ 禁止吸烟（包括二手烟），增加早产和低体重儿风险</li>
+      <li class="tip-bad">❌ 禁止饮酒，没有安全饮酒量</li>
+      <li class="tip-bad">❌ 不要随意用药，任何药物先咨询医生</li>
+      <li class="tip-bad">❌ 避免接触猫砂（弓形虫感染风险）</li>
+      <li class="tip-bad">❌ 避免新装修环境（甲醛等有害气体）</li>
+      <li class="tip-bad">❌ 避免泡温泉/桑拿（高温影响胎儿发育）</li>
+      <li class="tip-bad">❌ 避免长时间站立或久坐不动</li>
+      <li class="tip-bad">❌ 避免接触杀虫剂、染发剂等化学品</li>
+    </ul>`
+  },
+  {
+    cat:'taboo', catLabel:'日常禁忌', title:'危险信号 — 立即就医', icon:'🚨',
+    body:`<p><strong>出现以下任何情况，请立即前往医院：</strong></p>
+    <ul>
+      <li class="tip-bad">🚨 阴道大量出血</li>
+      <li class="tip-bad">🚨 持续剧烈头痛或视物模糊（先兆子痫）</li>
+      <li class="tip-bad">🚨 胎动明显减少或消失</li>
+      <li class="tip-bad">🚨 破水（不论有无宫缩）</li>
+      <li class="tip-bad">🚨 持续腹痛或腰痛</li>
+      <li class="tip-bad">🚨 高烧不退（体温>38°C）</li>
+      <li class="tip-bad">🚨 头面部或全身严重水肿伴血压升高</li>
+    </ul>`
+  },
+  {
+    cat:'wedding', catLabel:'婚礼特别注意', title:'婚礼当天孕妇安排', icon:'💒',
+    body:`<ul>
+      <li class="tip-good">✅ 穿舒适平底鞋或低跟鞋（≤3cm）</li>
+      <li class="tip-good">✅ 婚纱选宽松款或可调节腰围的款式</li>
+      <li class="tip-good">✅ 安排新娘专属休息室，每隔1小时休息15分钟</li>
+      <li class="tip-good">✅ 提前准备新娘餐盒，少量多次进食</li>
+      <li class="tip-good">✅ 以茶代酒/以水代酒，提前和亲友沟通</li>
+      <li class="tip-good">✅ 使用孕妇安全的化妆品和护肤品</li>
+      <li class="tip-good">✅ 准备应急包（零食、湿巾、水、备用平底鞋）</li>
+      <li class="tip-bad">❌ 流程不宜超过3小时，避免站立过久</li>
+      <li class="tip-bad">❌ 提前和伴郎团沟通，禁止任何可能伤害孕妇的婚闹</li>
+      <li class="tip-bad">❌ 接亲路线避免长途颠簸</li>
+    </ul>`
+  },
+  {
+    cat:'wedding', catLabel:'婚礼特别注意', title:'婚纱照拍摄建议', icon:'📸',
+    body:`<ul>
+      <li class="tip-good">✅ 最佳时间：孕14-16周（5月下旬-6月初）</li>
+      <li class="tip-good">✅ 拍摄时间控制在半天内，充足休息</li>
+      <li class="tip-good">✅ 随身携带零食和水，随时补充能量</li>
+      <li class="tip-good">✅ 选择室内或阴凉环境为主</li>
+      <li class="tip-bad">❌ 避免高温户外长时间拍摄</li>
+      <li class="tip-bad">❌ 避免过紧束腰的婚纱款式</li>
+      <li class="tip-bad">❌ 避免高难度姿势或长时间保持同一姿势</li>
+    </ul>`
+  },
+  {
+    cat:'culture', catLabel:'民俗文化', title:'柯尔克孜族婚礼习俗', icon:'🏔️',
+    body:`<ul>
+      <li><strong>提亲（库达拉舒）</strong>：男方家族长辈代表赴女方家正式提亲，建立两家亲缘关系（库达）</li>
+      <li><strong>聘礼（卡凌）</strong>：包含牲畜（马/牛/羊）、布匹、首饰等，具体由双方家长商定</li>
+      <li><strong>揭面纱（别特阿恰尔）</strong>：嫂子或婶婶用木勺挑开新娘面纱，寓意新生活的开始</li>
+      <li><strong>库姆孜弹唱</strong>：柯尔克孜族传统三弦乐器演奏，婚礼上弹奏祝福曲目</li>
+      <li><strong>对歌</strong>：男女方亲友即兴对歌，活跃气氛，展现才艺</li>
+      <li><strong>民族歌舞</strong>：宾客围圈跳柯尔克孜传统舞蹈，热闹喜庆</li>
+      <li><strong>赛马/叼羊</strong>：传统民俗竞技活动，为婚礼增添欢乐气氛</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:12px;margin-top:6px">※ 所有习俗均为民族文化传统，非宗教仪式</p>`
+  },
+  {
+    cat:'culture', catLabel:'民俗文化', title:'两地婚礼物流指南', icon:'✈️',
+    body:`<ul>
+      <li class="tip-good">✅ 简阳→成都双流/天府机场：约1小时车程</li>
+      <li class="tip-good">✅ 成都→乌鲁木齐：飞行约4.5小时</li>
+      <li class="tip-good">✅ 乌鲁木齐→阿图什/克州：飞行约1.5小时</li>
+      <li class="tip-good">✅ 孕中期坐飞机安全（<36周），注意多走动</li>
+      <li class="tip-good">✅ 两场婚礼间隔1周，充分休息调整</li>
+      <li class="tip-bad">❌ 克州阿图什海拔1300m，一般无高反</li>
+      <li class="tip-bad">❌ 帕米尔高原海拔>3000m，孕妇不建议前往</li>
+      <li class="tip-bad">❌ 提前1-2天到达克州适应，避免疑劳</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:12px;margin-top:6px">※ 建议请值得信赖的双语亲友担任“文化协调人”</p>`
+  },
+  {
+    cat:'culture', catLabel:'民俗文化', title:'柯尔克孜族传统服饰', icon:'👘',
+    body:`<ul>
+      <li><strong>新娘嫁衣</strong>：传统白色长裙，配精美刺绣花纹</li>
+      <li><strong>新娘高帽</strong>：尖顶高帽（shökülö），点缀宝石或银饰</li>
+      <li><strong>银饰</strong>：胸前佩戴银链、银坠等传统首饰</li>
+      <li><strong>新郎礼服</strong>：柯尔克孜传统长袍，搭配精致腰带</li>
+      <li><strong>白毡帽（ak-kalpak）</strong>：新郎佩戴白色毡帽，象征纯洁与尊贵</li>
+      <li class="tip-good">✅ 建议准备两套：仪式穿传统服饰，晚宴换现代礼服</li>
+      <li class="tip-good">✅ 因孕期身体变化，传统婚服建议预留调整空间</li>
+    </ul>`
+  }
+];
+
+const KNOWLEDGE_CATEGORIES = [
+  { id:'all', label:'全部' },
+  { id:'diet', label:'🥗 饮食' },
+  { id:'exercise', label:'🧘 运动' },
+  { id:'checkup', label:'🏥 产检' },
+  { id:'taboo', label:'⚠️ 禁忌' },
+  { id:'wedding', label:'💒 婚礼' },
+  { id:'culture', label:'🏔️ 民俗' },
+];
+
+// ===================================================================
+// 7. HOSPITAL BAG DATA
+// ===================================================================
+const BAG_DATA = {
+  mom: {
+    title: '👩 妈妈用品',
+    items: [
+      { id:'bm1', name:'身份证、医保卡、产检手册', note:'证件类' },
+      { id:'bm2', name:'结婚证', note:'部分医院需要' },
+      { id:'bm3', name:'产褥垫（至少2包）', note:'产后必备' },
+      { id:'bm4', name:'产妇卫生巾（夜用加长型）', note:'至少2包' },
+      { id:'bm5', name:'一次性内裤', note:'至少10条' },
+      { id:'bm6', name:'哺乳内衣', note:'2-3件' },
+      { id:'bm7', name:'月子服/睡衣', note:'开衫款方便哺乳' },
+      { id:'bm8', name:'吸奶器', note:'建议电动双边' },
+      { id:'bm9', name:'防溢乳垫', note:'一次性便捷' },
+      { id:'bm10', name:'束腹带', note:'顺产/剖腹产款不同' },
+      { id:'bm11', name:'洗漱用品、毛巾、拖鞋', note:'个人清洁' },
+      { id:'bm12', name:'吸管杯', note:'躺着喝水用' },
+      { id:'bm13', name:'能量食品', note:'遵医院规定，如巧克力等' },
+      { id:'bm14', name:'充电器、充电宝', note:'保持联系' },
+      { id:'bm15', name:'保温杯', note:'热水' },
+    ]
+  },
+  baby: {
+    title: '👶 宝宝用品',
+    items: [
+      { id:'bb1', name:'新生儿连体衣', note:'3-5件' },
+      { id:'bb2', name:'和尚服', note:'2-3件' },
+      { id:'bb3', name:'包被/抱被', note:'出院用' },
+      { id:'bb4', name:'NB码纸尿裤', note:'1-2包' },
+      { id:'bb5', name:'婴儿湿巾', note:'2-3包' },
+      { id:'bb6', name:'棉柔巾/干湿两用巾', note:'多包' },
+      { id:'bb7', name:'奶瓶+新生儿奶嘴', note:'备用，优先母乳' },
+      { id:'bb8', name:'小罐奶粉', note:'备用应急' },
+      { id:'bb9', name:'小帽子、小袜子', note:'各2-3双' },
+      { id:'bb10', name:'婴儿浴盆', note:'' },
+      { id:'bb11', name:'婴儿沐浴露', note:'无泪配方' },
+      { id:'bb12', name:'婴儿指甲剪', note:'新生儿专用' },
+      { id:'bb13', name:'肚脐贴/护脐带', note:'脐带护理' },
+      { id:'bb14', name:'婴儿隔尿垫', note:'多备几块' },
+    ]
+  }
+};
+
+// ===================================================================
+// 8. TAB SWITCHING
+// ===================================================================
+const tabBtns = document.querySelectorAll('.tab-btn');
+const pages = document.querySelectorAll('.page');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.page;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('page-' + target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ===================================================================
+// 9. RENDER: HOME / COUNTDOWN
+// ===================================================================
+function renderHome() {
+  const today = new Date();
+  const lmp = new Date(state.lmpDate);
+  const edd = getEDD(state.lmpDate);
+  const weddingDate = new Date(state.weddingDate);
+
+  // Countdown
+  const weddingDays = daysBetween(today, weddingDate);
+  const babyDays = daysBetween(today, edd);
+  document.getElementById('cd-wedding').textContent = Math.max(0, weddingDays);
+  document.getElementById('cd-baby').textContent = Math.max(0, babyDays);
+
+  // Week info
+  const wk = getWeekDay(state.lmpDate, today);
+  document.getElementById('week-badge').textContent = `孕 ${wk.week} 周 ${wk.day} 天`;
+
+  const trimester = wk.week < 13 ? '孕早期' : wk.week < 28 ? '孕中期' : '孕晚期';
+  document.getElementById('week-sub').textContent =
+    `${trimester} · 预产期 ${formatDate(edd)}`;
+
+  // Baby size
+  const sizeIdx = Math.min(wk.week, 40);
+  const size = BABY_SIZES[sizeIdx] || BABY_SIZES[1];
+  document.getElementById('baby-emoji').textContent = size.emoji;
+  document.getElementById('baby-size-title').textContent =
+    `现在宝宝像一个${size.name}`;
+  document.getElementById('baby-size-desc').textContent =
+    `约 ${size.size} · ${size.desc}`;
+
+  // Progress
+  const pct = Math.min(100, Math.max(0, Math.round((wk.totalDays / 280) * 100)));
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// ===================================================================
+// 10. RENDER: TIMELINE
+// ===================================================================
+function renderTimeline() {
+  const container = document.getElementById('timeline-container');
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1; // 1-12
+  const currentYear = now.getFullYear();
+
+  container.innerHTML = TIMELINE_DATA.map((item, idx) => {
+    const isPast = (currentYear > 2026) || (currentYear === 2026 && currentMonth > item.month);
+    const isCurrent = currentYear === 2026 && currentMonth === item.month;
+    const statusClass = isCurrent ? 'current' : isPast ? 'past' : '';
+
+    return `
+      <div class="tl-item ${statusClass}" data-idx="${idx}">
+        <div class="tl-dot"></div>
+        <div class="tl-month">${item.label} <span style="font-weight:400;color:var(--text-light);font-size:12px">${item.weeks}</span></div>
+        <div class="tl-content">
+          <div class="tl-col pregnancy">
+            <h4>🤰 孕期</h4>
+            <ul>${item.pregnancy.map(p => `<li>· ${p}</li>`).join('')}</ul>
+          </div>
+          ${item.wedding.length ? `<div class="tl-col wedding-col">
+            <h4>💍 婚礼</h4>
+            <ul>${item.wedding.map(w => `<li>· ${w}</li>`).join('')}</ul>
+          </div>` : `<div class="tl-col wedding-col" style="opacity:.4">
+            <h4>💍 婚礼</h4>
+            <ul><li style="color:var(--text-light)">· 安心待产中~</li></ul>
+          </div>`}
+        </div>
+        ${item.detail ? `<button class="tl-toggle" onclick="toggleTimeline(${idx})">📋 查看详情</button>
+        <div class="tl-detail">${item.detail}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+function toggleTimeline(idx) {
+  const el = document.querySelector(`.tl-item[data-idx="${idx}"]`);
+  if (el) {
+    el.classList.toggle('expanded');
+    const btn = el.querySelector('.tl-toggle');
+    if (btn) btn.textContent = el.classList.contains('expanded') ? '📋 收起详情' : '📋 查看详情';
+  }
+}
+
+// ===================================================================
+// 11. RENDER: CHECKLIST
+// ===================================================================
+function renderChecklist() {
+  const container = document.getElementById('checklist-container');
+  container.innerHTML = CHECKLIST_DATA.map(group => {
+    const doneCount = group.items.filter(it => state.checklist[it.id]).length;
+    const total = group.items.length;
+    const pct = total ? Math.round((doneCount / total) * 100) : 0;
+
+    return `
+      <div class="checklist-group" data-group="${group.id}">
+        <div class="group-header" onclick="toggleGroup('${group.id}')">
+          <h3>${group.group}</h3>
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="group-progress">${doneCount}/${total} (${pct}%)</span>
+            <span class="group-arrow">▼</span>
+          </span>
+        </div>
+        <div class="group-progress-bar">
+          <div class="group-progress-fill" style="width:${pct}%"></div>
+        </div>
+        <div class="group-items">
+          ${group.items.map(it => `
+            <div class="check-item ${state.checklist[it.id] ? 'done' : ''}" onclick="toggleCheck('${it.id}')">
+              <div class="check-box"></div>
+              <span class="check-label">${it.label}</span>
+              <span class="check-tag ${it.tag === 'prenatal' ? 'prenatal' : 'wedding-tag'}">${it.tag === 'prenatal' ? '产检' : '婚礼'}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function toggleGroup(groupId) {
+  const el = document.querySelector(`.checklist-group[data-group="${groupId}"]`);
+  if (el) el.classList.toggle('collapsed');
+}
+
+function toggleCheck(itemId) {
+  state.checklist[itemId] = !state.checklist[itemId];
+  saveState();
+  renderChecklist();
+}
+
+// ===================================================================
+// 12. RENDER: KNOWLEDGE CARDS
+// ===================================================================
+let currentFilter = 'all';
+
+function renderKnowledge() {
+  // Filter bar
+  const filterBar = document.getElementById('filter-bar');
+  filterBar.innerHTML = KNOWLEDGE_CATEGORIES.map(cat =>
+    `<button class="filter-btn ${currentFilter === cat.id ? 'active' : ''}"
+      onclick="setFilter('${cat.id}')">${cat.label}</button>`
+  ).join('');
+
+  // Cards
+  const container = document.getElementById('knowledge-container');
+  const filtered = currentFilter === 'all'
+    ? KNOWLEDGE_DATA
+    : KNOWLEDGE_DATA.filter(k => k.cat === currentFilter);
+
+  container.innerHTML = filtered.map((card, i) => `
+    <div class="knowledge-card" data-kidx="${i}">
+      <div class="kc-header" onclick="toggleKnowledge(this)">
+        <h3>${card.icon} ${card.title}
+          <span class="kc-cat cat-${card.cat}">${card.catLabel}</span>
+        </h3>
+        <span class="kc-arrow">▼</span>
+      </div>
+      <div class="kc-body">${card.body}</div>
+    </div>
+  `).join('');
+}
+
+function setFilter(catId) {
+  currentFilter = catId;
+  renderKnowledge();
+}
+
+function toggleKnowledge(header) {
+  const card = header.closest('.knowledge-card');
+  if (card) card.classList.toggle('expanded');
+}
+
+// ===================================================================
+// 13. RENDER: HOSPITAL BAG
+// ===================================================================
+function renderBag() {
+  const container = document.getElementById('bag-container');
+
+  container.innerHTML = Object.entries(BAG_DATA).map(([key, section]) => {
+    const doneCount = section.items.filter(it => state.bag[it.id]).length;
+    const total = section.items.length;
+    const pct = total ? Math.round((doneCount / total) * 100) : 0;
+
+    return `
+      <div class="bag-section">
+        <div class="bag-title">${section.title}</div>
+        <div class="bag-progress-info">
+          <span>已准备 ${doneCount}/${total}</span>
+          <span>${pct}%</span>
+        </div>
+        <div class="progress-bar" style="margin-bottom:10px">
+          <div class="progress-fill" style="width:${pct}%;background:var(--success)"></div>
+        </div>
+        <div class="bag-items">
+          ${section.items.map(it => `
+            <div class="bag-item ${state.bag[it.id] ? 'done' : ''}" onclick="toggleBag('${it.id}')">
+              <div class="bag-check"></div>
+              <span class="bag-name">${it.name}</span>
+              ${it.note ? `<span class="bag-note">${it.note}</span>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function toggleBag(itemId) {
+  state.bag[itemId] = !state.bag[itemId];
+  saveState();
+  renderBag();
+}
+
+// ===================================================================
+// 14. BUDGET DATA & RENDER
+// ===================================================================
+const BUDGET_DATA = [
+  {
+    cat: 'dress', icon: '👗', label: '婚纱服装',
+    items: [
+      { id:'bd1', name:'汉式主婚纱（租赁/购买）', est:'2000-6000' },
+      { id:'bd2', name:'敬酒服', est:'500-3000' },
+      { id:'bd3', name:'柯尔克孜传统嫁衣+高帽', est:'1500-5000' },
+      { id:'bd4', name:'新郎西服', est:'500-3000' },
+      { id:'bd5', name:'新郎柯尔克孜礼服+白毡帽', est:'1000-4000' },
+      { id:'bd6', name:'新娘鞋（平底/低跟）', est:'200-600' },
+      { id:'bd7', name:'配饰（头纱、银饰等）', est:'200-800' },
+    ]
+  },
+  {
+    cat: 'photo', icon: '📸', label: '婚纱照',
+    items: [
+      { id:'bp1', name:'婚纱照套餐', est:'3000-8000' },
+      { id:'bp2', name:'加片精修', est:'0-2000' },
+    ]
+  },
+  {
+    cat: 'banquet_jy', icon: '🏮', label: '简阳婚宴（汉式）',
+    items: [
+      { id:'bj1', name:'酒席15桌（含场地）', est:'22500-37500' },
+      { id:'bj2', name:'烟', est:'1000-2000' },
+      { id:'bj3', name:'白酒', est:'3000-8000' },
+      { id:'bj4', name:'红酒/饮料', est:'1000-2500' },
+      { id:'bj5', name:'喜糖/伴手礼', est:'2000-4000' },
+    ]
+  },
+  {
+    cat: 'banquet_kz', icon: '🏔️', label: '克州婚宴（柯尔克孜式）',
+    items: [
+      { id:'bk1', name:'婚宴20桌（整羊+手抓饭等）', est:'15000-35000' },
+      { id:'bk2', name:'场地布置（毡房/宴会厅）', est:'2000-6000' },
+      { id:'bk3', name:'库姆孜艺人+歌舞表演', est:'2000-5000' },
+      { id:'bk4', name:'赛马/叼羊活动', est:'2000-6000' },
+    ]
+  },
+  {
+    cat: 'ceremony', icon: '💒', label: '婚庆策划',
+    items: [
+      { id:'bc1', name:'简阳婚庆套餐（司仪+摄影+化妆+布置）', est:'5000-15000' },
+      { id:'bc2', name:'简阳婚车', est:'2000-5000' },
+      { id:'bc3', name:'克州摄影摄像', est:'2000-5000' },
+      { id:'bc4', name:'接亲红包/伴郎伴娘礼', est:'500-2000' },
+    ]
+  },
+  {
+    cat: 'kalin', icon: '🐎', label: '聘礼·首饰（卡凌）',
+    items: [
+      { id:'bl1', name:'牲畜（马/牛/羊）', est:'8000-20000' },
+      { id:'bl2', name:'布匹/衣物', est:'2000-5000' },
+      { id:'bl3', name:'三金/五金首饰', est:'15000-30000' },
+      { id:'bl4', name:'婚戒（对戒）', est:'3000-10000' },
+    ]
+  },
+  {
+    cat: 'transport', icon: '✈️', label: '两地交通住宿',
+    items: [
+      { id:'bt1', name:'机票（成都↔克州，多人）', est:'5000-12000' },
+      { id:'bt2', name:'克州住宿（约一周）', est:'1500-4000' },
+      { id:'bt3', name:'当地租车/交通', est:'500-1500' },
+    ]
+  },
+  {
+    cat: 'prenatal', icon: '🏥', label: '孕产费用',
+    items: [
+      { id:'br1', name:'孕期产检费用', est:'5000-8000' },
+      { id:'br2', name:'分娩费用', est:'5000-15000' },
+      { id:'br3', name:'月嫂（26天）', est:'8000-20000' },
+      { id:'br4', name:'待产包采购', est:'1000-2500' },
+    ]
+  },
+  {
+    cat: 'other', icon: '📦', label: '其他',
+    items: [
+      { id:'bo1', name:'请柬（电子+纸质，两地）', est:'300-800' },
+      { id:'bo2', name:'婚房布置', est:'500-2000' },
+    ]
+  }
+];
+
+function getAllBudgetItems() {
+  const items = [];
+  BUDGET_DATA.forEach(cat => {
+    cat.items.forEach(it => items.push({ ...it, catId: cat.cat }));
+  });
+  // Add custom items
+  Object.entries(state.budgetCustom || {}).forEach(([catId, arr]) => {
+    arr.forEach(it => items.push({ ...it, catId }));
+  });
+  return items;
+}
+
+function getBudgetActual(id) {
+  const v = state.budgetActual[id];
+  return (v !== undefined && v !== '' && v !== null) ? Number(v) : null;
+}
+
+function calcCatTotal(catId) {
+  let total = 0;
+  const defaultItems = BUDGET_DATA.find(c => c.cat === catId)?.items || [];
+  const customItems = (state.budgetCustom || {})[catId] || [];
+  [...defaultItems, ...customItems].forEach(it => {
+    const v = getBudgetActual(it.id);
+    if (v !== null) total += v;
+  });
+  return total;
+}
+
+function renderBudget() {
+  const container = document.getElementById('budget-container');
+  let grandTotal = 0;
+  let filledCount = 0;
+  let totalItems = 0;
+
+  getAllBudgetItems().forEach(it => {
+    totalItems++;
+    const v = getBudgetActual(it.id);
+    if (v !== null) { grandTotal += v; filledCount++; }
+  });
+
+  // Summary cards
+  let html = `<div class="budget-summary">
+    <div class="budget-total">
+      <div class="bt-label">已记录总花费</div>
+      <div class="bt-num">¥${grandTotal.toLocaleString()}</div>
+      <div class="bt-sub">已填 ${filledCount}/${totalItems} 项</div>
+    </div>
+  </div>`;
+
+  // Category sections
+  BUDGET_DATA.forEach(cat => {
+    const catTotal = calcCatTotal(cat.cat);
+    const customItems = (state.budgetCustom || {})[cat.cat] || [];
+    const allItems = [...cat.items, ...customItems];
+    const estRange = getEstRange(allItems);
+    const pct = estRange.max > 0 ? Math.min(150, Math.round((catTotal / estRange.max) * 100)) : 0;
+    const overBudget = catTotal > estRange.max && estRange.max > 0;
+
+    html += `<div class="budget-cat" data-bcat="${cat.cat}">
+      <div class="budget-cat-header" onclick="toggleBudgetCat('${cat.cat}')">
+        <h3>${cat.icon} ${cat.label}</h3>
+        <span style="display:flex;align-items:center">
+          <span class="bcat-total">¥${catTotal.toLocaleString()}</span>
+          <span class="bcat-arrow">▼</span>
+        </span>
+      </div>
+      <div class="budget-items-wrap">
+        <div class="budget-bar-wrap" style="padding-top:8px">
+          <div class="budget-bar-label">
+            <span>参考: ¥${estRange.min.toLocaleString()} - ¥${estRange.max.toLocaleString()}</span>
+            <span>${overBudget ? '⚠️ 超出参考上限' : ''}</span>
+          </div>
+          <div class="budget-bar">
+            <div class="budget-bar-fill ${overBudget ? 'over' : 'under'}" style="width:${Math.min(100, pct)}%"></div>
+          </div>
+        </div>
+        ${allItems.map(it => {
+          const val = getBudgetActual(it.id);
+          return `<div class="budget-row">
+            <span class="br-name">${it.name}</span>
+            <span class="br-est">${it.est || '自定义'}</span>
+            <span class="br-actual">
+              <input type="number" placeholder="实际花费" 
+                value="${val !== null ? val : ''}" 
+                onchange="updateBudget('${it.id}', this.value)"
+                inputmode="numeric">
+            </span>
+          </div>`;
+        }).join('')}
+        <div class="budget-add-row">
+          <input type="text" placeholder="添加自定义项..." id="add-name-${cat.cat}">
+          <button onclick="addBudgetItem('${cat.cat}')">+ 添加</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  html += `<div class="budget-note">💡 金额只保存在你的设备上，不会上传</div>`;
+  container.innerHTML = html;
+}
+
+function getEstRange(items) {
+  let min = 0, max = 0;
+  items.forEach(it => {
+    if (it.est && it.est.includes('-')) {
+      const parts = it.est.split('-');
+      min += parseInt(parts[0]) || 0;
+      max += parseInt(parts[1]) || 0;
+    }
+  });
+  return { min, max };
+}
+
+function updateBudget(id, value) {
+  if (value === '' || value === null) {
+    delete state.budgetActual[id];
+  } else {
+    state.budgetActual[id] = Number(value) || 0;
+  }
+  saveState();
+  // Re-render summary without losing scroll
+  const container = document.getElementById('budget-container');
+  const summary = container.querySelector('.budget-summary');
+  if (summary) {
+    let grandTotal = 0, filledCount = 0, totalItems = 0;
+    getAllBudgetItems().forEach(it => {
+      totalItems++;
+      const v = getBudgetActual(it.id);
+      if (v !== null) { grandTotal += v; filledCount++; }
+    });
+    summary.innerHTML = `<div class="budget-total">
+      <div class="bt-label">已记录总花费</div>
+      <div class="bt-num">¥${grandTotal.toLocaleString()}</div>
+      <div class="bt-sub">已填 ${filledCount}/${totalItems} 项</div>
+    </div>`;
+  }
+  // Update cat total and bar
+  BUDGET_DATA.forEach(cat => {
+    const catEl = container.querySelector(`[data-bcat="${cat.cat}"]`);
+    if (catEl) {
+      const ct = calcCatTotal(cat.cat);
+      const totalSpan = catEl.querySelector('.bcat-total');
+      if (totalSpan) totalSpan.textContent = `¥${ct.toLocaleString()}`;
+      const customItems = (state.budgetCustom || {})[cat.cat] || [];
+      const allItems = [...cat.items, ...customItems];
+      const estRange = getEstRange(allItems);
+      const pct = estRange.max > 0 ? Math.min(100, Math.round((ct / estRange.max) * 100)) : 0;
+      const over = ct > estRange.max && estRange.max > 0;
+      const fill = catEl.querySelector('.budget-bar-fill');
+      if (fill) {
+        fill.style.width = pct + '%';
+        fill.className = `budget-bar-fill ${over ? 'over' : 'under'}`;
+      }
+      const lbl = catEl.querySelector('.budget-bar-label');
+      if (lbl) {
+        lbl.lastElementChild.textContent = over ? '⚠️ 超出参考上限' : '';
+      }
+    }
+  });
+}
+
+function toggleBudgetCat(catId) {
+  const el = document.querySelector(`.budget-cat[data-bcat="${catId}"]`);
+  if (el) el.classList.toggle('collapsed');
+}
+
+function addBudgetItem(catId) {
+  const input = document.getElementById('add-name-' + catId);
+  const name = (input.value || '').trim();
+  if (!name) return;
+  if (!state.budgetCustom) state.budgetCustom = {};
+  if (!state.budgetCustom[catId]) state.budgetCustom[catId] = [];
+  const id = 'custom_' + catId + '_' + Date.now();
+  state.budgetCustom[catId].push({ id, name, est: '' });
+  saveState();
+  renderBudget();
+}
+
+// ===================================================================
+// 16. SETTINGS
+// ===================================================================
+function openSettings() {
+  document.getElementById('input-lmp').value = state.lmpDate;
+  document.getElementById('input-wedding').value = state.weddingDate;
+  document.getElementById('settings-modal').classList.add('active');
+}
+
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('active');
+}
+
+function saveSettings() {
+  const newLmp = document.getElementById('input-lmp').value;
+  const newWedding = document.getElementById('input-wedding').value;
+  if (newLmp) state.lmpDate = newLmp;
+  if (newWedding) state.weddingDate = newWedding;
+  saveState();
+  renderAll();
+  closeSettings();
+}
+
+function resetAll() {
+  if (confirm('确定要重置所有数据吗？所有勾选进度将被清除。')) {
+    localStorage.removeItem(STORAGE_KEY);
+    state = { ...DEFAULT_STATE };
+    renderAll();
+    closeSettings();
+  }
+}
+
+// Close modal when clicking overlay
+document.getElementById('settings-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeSettings();
+});
+
+// ===================================================================
+// 17. INIT
+// ===================================================================
+function renderAll() {
+  renderHome();
+  renderTimeline();
+  renderChecklist();
+  renderKnowledge();
+  renderBag();
+  renderBudget();
+}
+
+renderAll();
+
+// Update countdown every minute
+setInterval(renderHome, 60000);
+</script>
+</body>
+</html>
