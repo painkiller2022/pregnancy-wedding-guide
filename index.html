@@ -755,6 +755,97 @@ const KNOWLEDGE_DATA = [
     </ul>`
   },
   {
+    cat:'diet', catLabel:'饮食营养', title:'孕期每日关键营养素速查', icon:'📊',
+    body:`<p style="color:var(--text-light);font-size:12px;margin-bottom:8px">数据来源：IOM/FNB DRI（美国医学研究院膳食参考摄入量）、NIH ODS</p>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr style="background:var(--primary-light);"><th style="padding:4px 6px;text-align:left">营养素</th><th style="padding:4px 6px">孕期 RDA/AI</th><th style="padding:4px 6px">上限 UL</th><th style="padding:4px 6px;text-align:left">优质食物来源</th></tr>
+      <tr><td style="padding:4px 6px"><strong>叶酸</strong></td><td style="padding:4px 6px;text-align:center">600 mcg DFE</td><td style="padding:4px 6px;text-align:center">1000 mcg</td><td style="padding:4px 6px">菠菜、扁豆、强化谷物</td></tr>
+      <tr><td style="padding:4px 6px"><strong>铁</strong></td><td style="padding:4px 6px;text-align:center">27 mg</td><td style="padding:4px 6px;text-align:center">45 mg</td><td style="padding:4px 6px">红肉、鸡肝、黑豆</td></tr>
+      <tr><td style="padding:4px 6px"><strong>钙</strong></td><td style="padding:4px 6px;text-align:center">1000 mg</td><td style="padding:4px 6px;text-align:center">2500 mg</td><td style="padding:4px 6px">牛奶、酸奶、豆腐</td></tr>
+      <tr><td style="padding:4px 6px"><strong>胆碱</strong></td><td style="padding:4px 6px;text-align:center">450 mg (AI)</td><td style="padding:4px 6px;text-align:center">3500 mg</td><td style="padding:4px 6px">鸡蛋（1个≈147mg）、牛肝</td></tr>
+      <tr><td style="padding:4px 6px"><strong>DHA</strong></td><td style="padding:4px 6px;text-align:center">200-300 mg</td><td style="padding:4px 6px;text-align:center">—</td><td style="padding:4px 6px">三文鱼、沙丁鱼、海藻油</td></tr>
+      <tr><td style="padding:4px 6px"><strong>碘</strong></td><td style="padding:4px 6px;text-align:center">220 mcg</td><td style="padding:4px 6px;text-align:center">1100 mcg</td><td style="padding:4px 6px">碘盐、海带、虾</td></tr>
+      <tr><td style="padding:4px 6px"><strong>维生素D</strong></td><td style="padding:4px 6px;text-align:center">600 IU (15 mcg)</td><td style="padding:4px 6px;text-align:center">4000 IU</td><td style="padding:4px 6px">日照、强化牛奶、鱼肝油</td></tr>
+    </table>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">※ DFE = 膳食叶酸当量；AI = 适宜摄入量（证据不足以制定 RDA 时使用）</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'胆碱 — 被忽视的关键营养素', icon:'🧠',
+    body:`<p style="margin-bottom:6px"><strong>90-95% 的孕妇胆碱摄入不足</strong>（NIH ODS, 2024）。胆碱对胎儿大脑海马体发育至关重要，与叶酸协同预防神经管缺陷。</p>
+    <ul>
+      <li class="tip-good">✅ 孕期适宜摄入量（AI）：<strong>450 mg/天</strong></li>
+      <li class="tip-good">✅ 鸡蛋是最佳来源：1个大鸡蛋≈147 mg 胆碱 — 每天2-3个即可达标</li>
+      <li class="tip-good">✅ 其他来源：牛肝（356 mg/85g）、大豆（107 mg/杯）、鸡胸肉（72 mg/85g）</li>
+      <li class="tip-good">✅ 多数孕妇复合维生素<strong>不含胆碱</strong>或含量极低，需通过食物补充</li>
+      <li class="tip-bad">❌ 不要依赖补充剂替代食物来源，吸收率差异大</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">参考：Caudill MA et al. FASEB J. 2018; NIH ODS Choline Fact Sheet 2024</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'铁元素 — 血红蛋白的科学', icon:'🩸',
+    body:`<p style="margin-bottom:6px">孕期血容量增加约50%，铁需求从 18 mg/天升至 <strong>27 mg/天</strong>（IOM/FNB DRI）。铁缺乏是全球孕妇最常见的营养缺乏。</p>
+    <ul>
+      <li class="tip-good">✅ <strong>血红素铁</strong>（吸收率15-35%）：红肉、肝脏、牡蛎 — 优先选择</li>
+      <li class="tip-good">✅ <strong>非血红素铁</strong>（吸收率2-20%）：菠菜、扁豆、强化谷物</li>
+      <li class="tip-good">✅ <strong>维C促吸收</strong>：铁剂/铁食物搭配橙子、番茄、青椒，可提升吸收6倍</li>
+      <li class="tip-bad">❌ 铁剂不要与牛奶/茶/咖啡同服 — 钙和鞣酸会抑制铁吸收</li>
+      <li class="tip-bad">❌ 不要自行大量补铁，UL=45 mg，过量引起便秘、恶心甚至铁中毒</li>
+    </ul>
+    <p style="margin-top:6px;font-size:12px"><strong>关键指标：</strong>血清铁蛋白 < 30 μg/L = 铁储备耗尽 | 血红蛋白 < 11 g/dL（首诊）= 贫血</p>
+    <p style="color:var(--text-light);font-size:11px;margin-top:4px">参考：ACOG Practice Bulletin #233; WHO ANC Guidelines 2016; NIH ODS Iron Fact Sheet 2024</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'DHA / Omega-3 与鱼类安全指南', icon:'🐟',
+    body:`<p style="margin-bottom:6px">DHA 是胎儿大脑和视网膜发育的关键脂肪酸。FDA/EPA 建议孕妇每周吃 <strong>2-3 份（227-340g）低汞鱼类</strong>。</p>
+    <ul>
+      <li class="tip-good">✅ <strong>最佳选择</strong>（低汞高DHA）：三文鱼、沙丁鱼、凤尾鱼、鳟鱼、大西洋鲭鱼</li>
+      <li class="tip-good">✅ <strong>良好选择</strong>：虾、鳕鱼、罗非鱼、鱿鱼</li>
+      <li class="tip-good">✅ 不吃鱼？可选海藻油DHA补充剂（200-300 mg/天）</li>
+      <li class="tip-bad">❌ <strong>绝对避免</strong>（高汞）：鲨鱼、剑鱼、方头鱼、大眼金枪鱼、马林鱼</li>
+      <li class="tip-bad">❌ 白金枪鱼（长鳍）每周不超过170g</li>
+      <li class="tip-bad">❌ 避免吃生鱼片/刺身 — 寄生虫和李斯特菌风险</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">参考：FDA/EPA Fish Advice 2021; Cochrane Review: Middleton P et al. 2018; ACOG Committee Opinion #462</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'食品安全 — 感染风险防控', icon:'🛡️',
+    body:`<p style="margin-bottom:6px">孕期免疫系统发生适应性变化，对某些食源性病原体更易感。以下是循证级别的食品安全指南：</p>
+    <ul>
+      <li class="tip-bad">❌ <strong>李斯特菌</strong>：避免未经巴氏消毒的奶/奶酪、冷藏即食肉类（火腿/热狗需彻底加热至>74°C）、冷熏三文鱼</li>
+      <li class="tip-bad">❌ <strong>弓形虫</strong>：肉类必须彻底煮熟（内部温度>71°C）、蔬果彻底清洗、避免接触猫砂</li>
+      <li class="tip-bad">❌ <strong>沙门氏菌</strong>：避免生鸡蛋及含生蛋制品（部分自制蛋黄酱、提拉米苏）</li>
+      <li class="tip-bad">❌ <strong>汞/重金属</strong>：避免高汞鱼类（详见"鱼类安全指南"卡片）</li>
+      <li class="tip-good">✅ <strong>安全原则</strong>：煮熟、洗净、分开存放、及时冷藏（<4°C）</li>
+      <li class="tip-good">✅ 外出就餐选择卫生条件好的餐厅，避免街边生冷食品</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">参考：CDC Listeria Prevention 2023; FDA Food Safety for Pregnant Women; ACOG FAQ001</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'妊娠糖尿病（GDM）循证饮食管理', icon:'📉',
+    body:`<p style="margin-bottom:6px">GDM 影响约 6-9% 的妊娠。24-28周 OGTT 糖耐量测试筛查。确诊后 <strong>80-90% 可通过饮食控制血糖</strong>。</p>
+    <ul>
+      <li class="tip-good">✅ <strong>碳水计数法</strong>：每餐碳水30-45g，加餐15g，分配到全天5-6餐</li>
+      <li class="tip-good">✅ <strong>选低GI碳水</strong>：糙米、燕麦、全麦面包、红薯（代替白米/白面）</li>
+      <li class="tip-good">✅ <strong>蛋白+纤维搭配</strong>：每餐搭配蛋白质和膳食纤维，减缓血糖上升</li>
+      <li class="tip-good">✅ 餐后30分钟散步15-20分钟，显著降低餐后血糖</li>
+      <li class="tip-bad">❌ 不要完全戒碳水 — 胎儿需要葡萄糖，酮症对胎儿有害</li>
+      <li class="tip-bad">❌ 避免果汁/含糖饮料 — 升糖极快，选择完整水果</li>
+      <li class="tip-bad">❌ 早晨胰岛素抵抗最强，早餐碳水需最严格控制（建议≤30g）</li>
+    </ul>
+    <p style="margin-top:6px;font-size:12px"><strong>血糖目标：</strong>空腹 < 5.3 mmol/L | 餐后1h < 7.8 mmol/L | 餐后2h < 6.7 mmol/L</p>
+    <p style="color:var(--text-light);font-size:11px;margin-top:4px">参考：IADPSG Criteria 2010; ADA Standards of Care 2024; ACOG Practice Bulletin #190</p>`
+  },
+  {
+    cat:'diet', catLabel:'饮食营养', title:'孕期饮食谣言破解', icon:'🔬',
+    body:`<ul>
+      <li><strong>❓ "吃螃蟹会流产"</strong><br>→ <span class="tip-good" style="display:inline">无科学证据</span>。煮熟的螃蟹可以适量吃，富含蛋白质和锌。只需确保<strong>彻底煮熟</strong>，避免蟹膏（胆固醇高）过量。<span style="font-size:11px;color:var(--text-light)">— FDA: 螃蟹属"良好选择"类海鲜</span></li>
+      <li style="margin-top:8px"><strong>❓ "孕妇不能喝咖啡"</strong><br>→ <span class="tip-good" style="display:inline">可以适量喝</span>。ACOG 明确指出每天 <strong>≤200 mg 咖啡因</strong>（约1杯12oz咖啡）是安全的。但能少则少。<span style="font-size:11px;color:var(--text-light)">— ACOG Committee Opinion #462</span></li>
+      <li style="margin-top:8px"><strong>❓ "要吃两个人的量"</strong><br>→ <span class="tip-bad" style="display:inline">错误</span>。孕早期几乎不需额外热量；孕中期 +340 kcal/天；孕晚期 +450 kcal/天。+340 kcal ≈ 一杯酸奶+一把坚果。<span style="font-size:11px;color:var(--text-light)">— IOM Weight Gain Guidelines 2009</span></li>
+      <li style="margin-top:8px"><strong>❓ "吃燕窝/花胶对胎儿好"</strong><br>→ <span style="display:inline">无高质量临床证据</span>支持特殊功效。蛋白质来源可选更经济高效的鸡蛋、鱼、瘦肉。如喜欢可少量食用，但不必神化。</li>
+      <li style="margin-top:8px"><strong>❓ "孕妇必须喝骨头汤补钙"</strong><br>→ <span class="tip-bad" style="display:inline">效果极低</span>。骨头汤含钙量仅约 <strong>4 mg/100ml</strong>（牛奶为120 mg/100ml）。补钙首选牛奶、酸奶、豆腐、绿叶蔬菜。<span style="font-size:11px;color:var(--text-light)">— J Food Composition Analysis, 2017</span></li>
+    </ul>`
+  },
+  {
     cat:'exercise', catLabel:'运动建议', title:'孕期运动指南', icon:'🧘‍♀️',
     body:`<ul>
       <li class="tip-good">✅ 散步：最安全的运动方式，每天30分钟</li>
