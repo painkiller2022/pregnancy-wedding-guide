@@ -299,6 +299,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 }
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
 <body>
@@ -307,6 +308,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <div class="sync-indicator" id="sync-indicator">
   <span class="sync-dot local" id="sync-dot"></span>
   <span id="sync-text">本地</span>
+  <button id="auth-btn" onclick="handleAuth()" style="margin-left:6px;font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;color:var(--text-light);display:none">登录</button>
 </div>
 
 <!-- Settings Button -->
@@ -490,14 +492,41 @@ const FIREBASE_CONFIG = {
 
 let _dbRef = null;
 let _isRemoteUpdate = false;
+let _currentUser = null;
 
 function updateSyncUI(status) {
   const dot = document.getElementById('sync-dot');
   const text = document.getElementById('sync-text');
+  const authBtn = document.getElementById('auth-btn');
   if (!dot || !text) return;
   dot.className = 'sync-dot ' + status;
   const labels = { local:'本地模式', connected:'已同步', syncing:'同步中...', offline:'离线' };
   text.textContent = labels[status] || status;
+  if (authBtn) {
+    if (_currentUser) {
+      authBtn.textContent = '✅ ' + (_currentUser.displayName || '已登录').split(' ')[0];
+      authBtn.style.display = 'inline-block';
+    } else {
+      authBtn.textContent = '🔑 登录同步';
+      authBtn.style.display = 'inline-block';
+    }
+  }
+}
+
+function handleAuth() {
+  if (!firebase.auth) return;
+  const auth = firebase.auth();
+  if (_currentUser) {
+    if (confirm('当前已登录：' + _currentUser.email + '\n\nUID: ' + _currentUser.uid + '\n\n点击确定退出登录')) {
+      auth.signOut();
+    }
+  } else {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).catch(e => {
+      console.warn('Auth error:', e);
+      alert('登录失败: ' + e.message);
+    });
+  }
 }
 
 function initSync() {
@@ -508,15 +537,37 @@ function initSync() {
   try {
     firebase.initializeApp(FIREBASE_CONFIG);
     const db = firebase.database();
-    _dbRef = db.ref('pwg');
+    const auth = firebase.auth();
 
-    db.ref('.info/connected').on('value', (snap) => {
-      updateSyncUI(snap.val() ? 'connected' : 'offline');
+    // 监听登录状态
+    auth.onAuthStateChanged((user) => {
+      _currentUser = user;
+      if (user) {
+        console.log('已登录:', user.email, 'UID:', user.uid);
+        // 登录后才建立写引用
+        _dbRef = db.ref('pwg');
+        // 首次同步：如果远端没数据，推送本地数据
+        _dbRef.once('value').then(snap => {
+          if (!snap.val()) _dbRef.set(state);
+        });
+      } else {
+        console.log('未登录 — 只读模式');
+        _dbRef = null;
+      }
+      updateSyncUI(user ? 'connected' : 'offline');
     });
 
-    _dbRef.on('value', (snap) => {
+    // 连接状态
+    db.ref('.info/connected').on('value', (snap) => {
+      if (_currentUser) {
+        updateSyncUI(snap.val() ? 'connected' : 'offline');
+      }
+    });
+
+    // 实时监听数据变化（只读，任何人都可以）
+    db.ref('pwg').on('value', (snap) => {
       const data = snap.val();
-      if (!data) { _dbRef.set(state); return; }
+      if (!data) return;
       if (_isRemoteUpdate) return;
       const remote = JSON.stringify(data);
       const local = JSON.stringify(state);
