@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>孕期婚礼筹备指南</title>
+<title>孕产与新生儿家庭指南</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -61,6 +61,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 .countdown-card{border-radius:var(--radius);padding:20px 12px;text-align:center;position:relative;overflow:hidden}
 .countdown-card.wedding{background:linear-gradient(135deg,#6366f1,#818cf8)}
 .countdown-card.baby{background:linear-gradient(135deg,#f43f5e,#fb7185)}
+.countdown-card.milestone{background:linear-gradient(135deg,#0f766e,#14b8a6)}
 .countdown-card .cd-label{font-size:12px;color:rgba(255,255,255,.85);margin-bottom:4px}
 .countdown-card .cd-num{font-size:42px;font-weight:800;color:#fff;line-height:1.1}
 .countdown-card .cd-unit{font-size:14px;color:rgba(255,255,255,.9);margin-top:2px}
@@ -80,6 +81,36 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
 .progress-fill{height:100%;border-radius:4px;transition:width .6s ease;
   background:linear-gradient(90deg,var(--primary),var(--accent))}
+.priority-panel{border-left:4px solid var(--accent);padding:14px 16px}
+.priority-panel h2{font-size:15px;color:var(--dark);margin-bottom:8px}
+.priority-list{display:grid;gap:7px;list-style:none}
+.priority-list li{font-size:13px;display:flex;gap:8px;align-items:flex-start}
+.priority-list li::before{content:'•';color:var(--accent);font-weight:800}
+.memory-strip{background:#f8fafc;border:1px solid var(--border);box-shadow:none;width:100%;
+  text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;align-items:center;gap:12px}
+.memory-strip:hover{border-color:var(--primary-light)}
+.memory-strip:focus-visible{outline:3px solid var(--primary-bg);border-color:var(--primary)}
+.memory-strip-content{flex:1}
+.memory-strip h2{font-size:14px;color:var(--dark);margin-bottom:3px}
+.memory-strip p{font-size:12px;color:var(--text-light)}
+.memory-arrow{font-size:18px;color:var(--primary);flex-shrink:0}
+.memory-list{display:grid;gap:10px;max-height:55vh;overflow-y:auto}
+.memory-event{padding:12px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--primary)}
+.memory-event h3{font-size:14px;color:var(--dark);margin-bottom:4px}
+.memory-event ul{list-style:none;font-size:12px;color:var(--text);line-height:1.7}
+.memory-event-detail{font-size:11px;color:var(--text-light);margin-top:6px;line-height:1.7}
+.memory-expense-summary{background:linear-gradient(135deg,#312e81,#6366f1);color:#fff;
+  border-radius:var(--radius-sm);padding:14px;margin:14px 0 10px}
+.memory-expense-summary span{display:block;font-size:11px;opacity:.8}
+.memory-expense-summary strong{display:block;font-size:26px;line-height:1.2;margin:2px 0}
+.memory-expense-summary small{font-size:11px;opacity:.8}
+.memory-expense-category{padding:10px 0;border-bottom:1px solid var(--border)}
+.memory-expense-category:last-child{border-bottom:none}
+.memory-expense-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:13px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.memory-expense-heading span:last-child{color:var(--primary)}
+.memory-expense-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:2px 0;color:var(--text)}
+.memory-expense-row span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* ===== Timeline ===== */
 .timeline{position:relative;padding-left:28px}
@@ -169,6 +200,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 .kc-cat.cat-taboo{background:#fee2e2;color:#991b1b}
 .kc-cat.cat-wedding{background:#ede9fe;color:#5b21b6}
 .kc-cat.cat-culture{background:#fce7f3;color:#9d174d}
+.kc-cat.cat-postpartum{background:#ffedd5;color:#9a3412}
+.kc-cat.cat-newborn{background:#ccfbf1;color:#115e59}
 
 /* ===== Hospital Bag ===== */
 .bag-section{margin-bottom:20px}
@@ -263,6 +296,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 .btn-primary:hover{background:var(--primary-light)}
 .btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border)}
 .btn-reset{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent)}
+.memory-modal{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:18px;
+  display:flex;flex-direction:column;overflow:hidden}
+.memory-modal h2{flex-shrink:0;margin-bottom:10px}
+.memory-modal-scroll{min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;padding-right:2px}
+.memory-modal .btn-row{flex-shrink:0;margin-top:12px}
 
 .settings-trigger{position:fixed;top:12px;right:12px;z-index:50;width:36px;height:36px;
   border-radius:50%;background:var(--card);border:1px solid var(--border);
@@ -312,23 +351,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <!-- Settings Button -->
 <button class="settings-trigger" onclick="openSettings()" aria-label="设置">⚙️</button>
 
-<!-- ===== Tab 1: Home / Countdown ===== -->
+<!-- ===== Tab 1: Home / Pregnancy Dashboard ===== -->
 <div class="page active" id="page-home">
   <div class="page-header">
-    <h1>👶 孕期 & 婚礼筹备</h1>
-    <p>柯尔克孜族 × 汉族 · 幸福倒计时</p>
+    <h1>👶 孕产与新生儿准备</h1>
+    <p>从现在到产后，一步一步安心准备</p>
   </div>
 
   <div class="countdown-grid">
-    <div class="countdown-card wedding">
-      <div class="cd-label">距简阳婚礼</div>
-      <div class="cd-num" id="cd-wedding">--</div>
-      <div class="cd-unit">天</div>
+    <div class="countdown-card milestone">
+      <div class="cd-label" id="week-countdown-label">当前孕周</div>
+      <div class="cd-num" id="cd-week">--</div>
+      <div class="cd-unit">周</div>
     </div>
     <div class="countdown-card baby">
-      <div class="cd-label">距离预产期</div>
+      <div class="cd-label" id="baby-countdown-label">距离预产期</div>
       <div class="cd-num" id="cd-baby">--</div>
-      <div class="cd-unit">天</div>
+      <div class="cd-unit" id="baby-countdown-unit">天</div>
     </div>
   </div>
 
@@ -347,7 +386,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 
   <div class="card progress-section">
     <div class="progress-label">
-      <span>孕期进度</span>
+      <span id="progress-title">孕期进度</span>
       <span id="progress-pct">0%</span>
     </div>
     <div class="progress-bar">
@@ -355,14 +394,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
     </div>
   </div>
 
+  <div class="card priority-panel">
+    <h2 id="priority-title">本阶段重点</h2>
+    <ul class="priority-list" id="priority-list"></ul>
+  </div>
+
+  <button class="card memory-strip" type="button" onclick="openWeddingMemory()" aria-haspopup="dialog">
+    <span class="memory-strip-content">
+      <h2>💍 婚礼回忆</h2>
+      <p id="wedding-memory">两场婚礼已经圆满完成，接下来专注迎接宝宝。</p>
+    </span>
+    <span class="memory-arrow" aria-hidden="true">›</span>
+  </button>
+
   <div class="disclaimer">⚕️ 本应用仅供参考，具体请以医生建议为准</div>
 </div>
 
 <!-- ===== Tab 2: Timeline ===== -->
 <div class="page" id="page-timeline">
   <div class="page-header">
-    <h1>📅 时间轴</h1>
-    <p>孕期产检 & 婚礼筹备 全览</p>
+    <h1>📅 孕产照护计划</h1>
+    <p>从孕中后期到宝宝 6 个月</p>
   </div>
   <div class="timeline" id="timeline-container"></div>
   <div class="disclaimer">⚕️ 产检时间为一般性建议，具体安排请遵医嘱</div>
@@ -371,8 +423,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <!-- ===== Tab 3: Checklist ===== -->
 <div class="page" id="page-checklist">
   <div class="page-header">
-    <h1>✅ 待办清单</h1>
-    <p>勾选已完成的任务，进度自动保存</p>
+    <h1>✅ 家庭准备清单</h1>
+    <p>医疗、分娩、恢复与育儿逐项准备</p>
   </div>
   <div id="checklist-container"></div>
   <div class="disclaimer">⚕️ 本应用仅供参考，具体请以医生建议为准</div>
@@ -381,8 +433,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <!-- ===== Tab 4: Knowledge ===== -->
 <div class="page" id="page-knowledge">
   <div class="page-header">
-    <h1>📖 知识卡片</h1>
-    <p>孕期注意事项 一卡掌握</p>
+    <h1>📖 孕产与育儿知识</h1>
+    <p>优先掌握安全、喂养与就医信号</p>
   </div>
   <div class="filter-bar" id="filter-bar"></div>
   <div id="knowledge-container"></div>
@@ -393,7 +445,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <div class="page" id="page-bag">
   <div class="page-header">
     <h1>🎒 待产包</h1>
-    <p>提前准备，安心待产</p>
+    <p>入院、产后恢复与宝宝照护</p>
   </div>
   <div id="bag-container"></div>
   <div class="disclaimer">⚕️ 物品清单仅供参考，请根据医院要求调整</div>
@@ -402,21 +454,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
 <!-- ===== Tab 6: Budget ===== -->
 <div class="page" id="page-budget">
   <div class="page-header">
-    <h1>💰 预算管理</h1>
-    <p>记录和追踪各项花费</p>
+    <h1>💰 孕产家庭预算</h1>
+    <p>优先保障医疗、照护与宝宝安全</p>
   </div>
   <div id="budget-container"></div>
-  <div class="disclaimer">💡 金额可自由编辑，数据自动保存在本地</div>
+  <div class="disclaimer">💡 金额可自由编辑，并随应用状态保存与同步</div>
 </div>
 
 <!-- ===== Tab Bar ===== -->
 <nav class="tab-bar">
   <button class="tab-btn active" data-page="home"><span class="tab-icon">🏠</span>首页</button>
-  <button class="tab-btn" data-page="timeline"><span class="tab-icon">📅</span>时间轴</button>
-  <button class="tab-btn" data-page="checklist"><span class="tab-icon">✅</span>待办</button>
-  <button class="tab-btn" data-page="knowledge"><span class="tab-icon">📖</span>知识</button>
+  <button class="tab-btn" data-page="timeline"><span class="tab-icon">📅</span>孕产计划</button>
+  <button class="tab-btn" data-page="checklist"><span class="tab-icon">✅</span>准备清单</button>
+  <button class="tab-btn" data-page="knowledge"><span class="tab-icon">📖</span>照护知识</button>
   <button class="tab-btn" data-page="bag"><span class="tab-icon">🎒</span>待产包</button>
-  <button class="tab-btn" data-page="budget"><span class="tab-icon">💰</span>预算</button>
+  <button class="tab-btn" data-page="budget"><span class="tab-icon">💰</span>家庭预算</button>
 </nav>
 
 <!-- ===== Settings Modal ===== -->
@@ -431,12 +483,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica N
       <label>婚礼日期</label>
       <input type="date" id="input-wedding">
     </div>
+    <div class="form-group">
+      <label>宝宝出生日期（出生后填写）</label>
+      <input type="date" id="input-birth">
+    </div>
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="closeSettings()">取消</button>
       <button class="btn btn-primary" onclick="saveSettings()">保存</button>
     </div>
     <div style="margin-top:12px">
       <button class="btn btn-reset" style="width:100%" onclick="resetAll()">🗑️ 重置所有数据</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Wedding Memory Modal ===== -->
+<div class="modal-overlay" id="wedding-memory-modal" role="dialog" aria-modal="true" aria-labelledby="wedding-memory-title">
+  <div class="modal memory-modal">
+    <h2 id="wedding-memory-title">💍 我们的婚礼回忆</h2>
+    <div class="memory-modal-scroll">
+      <div id="wedding-expense-summary"></div>
+      <div id="wedding-expense-list"></div>
+      <div class="memory-list" id="wedding-memory-list"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" type="button" onclick="closeWeddingMemory()">收起回忆</button>
     </div>
   </div>
 </div>
@@ -449,6 +520,7 @@ const STORAGE_KEY = 'pwg_state';
 const DEFAULT_STATE = {
   lmpDate: '2026-02-14',
   weddingDate: '2026-06-28',
+  babyBirthDate: '',
   checklist: {},
   bag: {},
   budgetActual: {},
@@ -614,7 +686,7 @@ const BABY_SIZES = [
 // ===================================================================
 // 4. TIMELINE DATA
 // ===================================================================
-const TIMELINE_DATA = [
+const ARCHIVE_TIMELINE_DATA = [
   {
     month: 3, label: '3月', weeks: '5-8周',
     pregnancy: ['首次产检（B超确认宫内妊娠、胎心胎芽）','医院建档（建小卡）','开始补充叶酸 0.4mg/天'],
@@ -671,10 +743,49 @@ const TIMELINE_DATA = [
   }
 ];
 
+const TIMELINE_DATA = [
+  {
+    label:'孕 24-27 周', weeks:'现在重点', startWeek:24, endWeek:27,
+    pregnancy:['完成糖耐量检查（24-28周）','按医嘱复查血常规，评估铁储备','开始建立规律胎动观察习惯'],
+    wedding:['确认分娩医院与产检路线','确定主要照护人和月嫂安排','开始采购待产与新生儿基础用品'],
+    detail:'胎动没有适用于所有人的固定次数，更重要的是熟悉宝宝自己的规律。若胎动明显少于平常，不要等到第二天，应立即联系产科或前往医院评估。'
+  },
+  {
+    label:'孕 28-31 周', weeks:'进入孕晚期', startWeek:28, endWeek:31,
+    pregnancy:['按医嘱每2周产检','关注胎动、血压和水肿变化','接种疫苗事宜咨询产科医生'],
+    wedding:['完成待产包第一版','学习母乳喂养与配方奶安全冲调','安装后向式婴儿安全座椅'],
+    detail:'出现阴道流血、流水、规律宫缩、剧烈头痛、视物异常、上腹痛或胎动明显减少，应立即就医。疫苗接种需结合所在地指南和个人情况由医生决定。'
+  },
+  {
+    label:'孕 32-36 周', weeks:'分娩准备期', startWeek:32, endWeek:36,
+    pregnancy:['35-37周按医嘱完成GBS筛查','确认胎位与胎儿生长情况','了解分娩镇痛和剖宫产指征'],
+    wedding:['证件、产检资料和待产包就位','规划医院路线与夜间出行方案','明确产后前两周家务和照护分工'],
+    detail:'提前和医生讨论分娩偏好，但要为医疗需要保留调整空间。产后支持计划应明确做饭、清洁、夜间照护、陪诊和访客管理的负责人。'
+  },
+  {
+    label:'孕 37-40+ 周', weeks:'足月待产', startWeek:37, endWeek:42,
+    pregnancy:['按医嘱每周产检与胎心监护','识别见红、破水和规律宫缩','继续关注胎动直到分娩'],
+    wedding:['手机畅通、车辆与联系人就绪','冰箱准备易消化的产后餐食','确认宝宝出生后首诊安排'],
+    detail:'破水后记录时间、颜色和气味并尽快联系医院；大量出血、持续剧痛、严重头痛或胎动明显减少应立即急诊就医。不要自行在家等待危险信号缓解。'
+  },
+  {
+    label:'产后 0-6 周', weeks:'妈妈恢复关键期', startWeek:43, endWeek:48,
+    pregnancy:['观察恶露、伤口、乳房和情绪变化','按医嘱完成产后复查','保证休息、饮水和规律进食'],
+    wedding:['记录宝宝喂养与尿便','落实安全睡眠：仰卧、独立睡眠表面','预约新生儿随访和免疫接种'],
+    detail:'若每小时浸透一片卫生巾并持续、发热、呼吸困难、胸痛、单侧小腿肿痛、剧烈头痛、伤口恶化，或出现伤害自己/宝宝的想法，应立即就医。'
+  },
+  {
+    label:'宝宝 2-6 个月', weeks:'建立家庭节奏', startWeek:49, endWeek:70,
+    pregnancy:['逐步恢复活动并关注盆底功能','持续关注睡眠与情绪健康','按个体情况讨论避孕与返岗计划'],
+    wedding:['按计划完成体检与疫苗接种','回应式互动：说话、拥抱、趴玩','约6个月评估辅食准备信号'],
+    detail:'宝宝应始终仰卧睡在平坦、坚实、独立的睡眠表面，睡眠区不放枕头、被子、围栏垫和玩偶。趴玩只在宝宝清醒且成人全程看护时进行。'
+  }
+];
+
 // ===================================================================
 // 5. CHECKLIST DATA
 // ===================================================================
-const CHECKLIST_DATA = [
+const ARCHIVE_CHECKLIST_DATA = [
   {
     group: '孕早期（1-12周）', id: 'early',
     items: [
@@ -723,6 +834,55 @@ const CHECKLIST_DATA = [
       { id:'l8', label:'安装婴儿安全座椅', tag:'wedding' },
       { id:'l9', label:'待产包放车上', tag:'prenatal' },
       { id:'l10', label:'保持手机畅通 & 车加满油', tag:'prenatal' },
+    ]
+  }
+];
+
+const CHECKLIST_DATA = [
+  {
+    group:'现在要完成（孕24-31周）', id:'now',
+    items:[
+      { id:'n1', label:'完成糖耐量检查并记录结果', tag:'prenatal' },
+      { id:'n2', label:'复查血常规，按医嘱评估补铁', tag:'prenatal' },
+      { id:'n3', label:'熟悉宝宝日常胎动规律', tag:'prenatal' },
+      { id:'n4', label:'确认分娩医院和急诊入口', tag:'prenatal' },
+      { id:'n5', label:'确定月嫂或主要产后照护人', tag:'care' },
+      { id:'n6', label:'开始准备待产包和证件袋', tag:'care' },
+      { id:'n7', label:'学习母乳喂养与配方奶安全冲调', tag:'care' }
+    ]
+  },
+  {
+    group:'分娩前就绪（孕32周后）', id:'birth',
+    items:[
+      { id:'d1', label:'完成GBS筛查（35-37周，遵医嘱）', tag:'prenatal' },
+      { id:'d2', label:'与医生讨论分娩镇痛和分娩偏好', tag:'prenatal' },
+      { id:'d3', label:'待产包、证件和产检资料装好', tag:'care' },
+      { id:'d4', label:'安装后向式婴儿安全座椅', tag:'care' },
+      { id:'d5', label:'确认去医院路线和备用交通', tag:'care' },
+      { id:'d6', label:'保存产科、急诊和家属电话', tag:'care' },
+      { id:'d7', label:'准备产后两周家务与饮食支持', tag:'care' }
+    ]
+  },
+  {
+    group:'产后0-6周：妈妈恢复', id:'postpartum',
+    items:[
+      { id:'p1', label:'预约并完成产后复查', tag:'prenatal' },
+      { id:'p2', label:'每日观察恶露、伤口和体温', tag:'prenatal' },
+      { id:'p3', label:'需要时联系专业哺乳支持', tag:'care' },
+      { id:'p4', label:'建立夜间照护与补觉轮班', tag:'care' },
+      { id:'p5', label:'关注持续低落、焦虑或失眠等情绪信号', tag:'prenatal' },
+      { id:'p6', label:'限制访客并落实洗手和不亲吻宝宝', tag:'care' }
+    ]
+  },
+  {
+    group:'新生儿0-3个月：安全照护', id:'newborn',
+    items:[
+      { id:'b1', label:'完成新生儿首诊、筛查和疫苗安排', tag:'care' },
+      { id:'b2', label:'睡眠始终仰卧、独立、床面平坦坚实', tag:'care' },
+      { id:'b3', label:'记录早期喂养、尿量和体重变化', tag:'care' },
+      { id:'b4', label:'掌握脐带、洗澡和臀部护理', tag:'care' },
+      { id:'b5', label:'学习婴儿心肺复苏与窒息急救', tag:'care' },
+      { id:'b6', label:'每日清醒看护下进行短时趴玩', tag:'care' }
     ]
   }
 ];
@@ -963,6 +1123,65 @@ const KNOWLEDGE_DATA = [
       <li class="tip-good">✅ 建议准备两套：仪式穿传统服饰，晚宴换现代礼服</li>
       <li class="tip-good">✅ 因孕期身体变化，传统婚服建议预留调整空间</li>
     </ul>`
+  },
+  {
+    cat:'postpartum', catLabel:'产后恢复', title:'产后危险信号 — 立即就医', icon:'🚑',
+    body:`<p><strong>产后一年内出现以下情况都应认真对待：</strong></p>
+    <ul>
+      <li class="tip-bad">🚨 每小时浸透一片或更多卫生巾，或排出大血块</li>
+      <li class="tip-bad">🚨 胸痛、呼吸困难、心跳异常或晕厥</li>
+      <li class="tip-bad">🚨 剧烈或持续加重的头痛、视物异常</li>
+      <li class="tip-bad">🚨 体温 ≥38°C、伤口红肿流脓或恶露恶臭</li>
+      <li class="tip-bad">🚨 单侧小腿红、肿、痛</li>
+      <li class="tip-bad">🚨 出现伤害自己或宝宝的想法</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">参考：CDC Hear Her Maternal Warning Signs；ACOG Postpartum Care</p>`
+  },
+  {
+    cat:'postpartum', catLabel:'产后恢复', title:'产后前6周恢复重点', icon:'🌿',
+    body:`<ul>
+      <li class="tip-good">✅ 按医嘱护理会阴或剖宫产伤口，保持清洁干燥</li>
+      <li class="tip-good">✅ 记录恶露变化；正常趋势应逐渐减少、颜色变淡</li>
+      <li class="tip-good">✅ 尽早轻柔活动，但疼痛加重或出血增多时停止</li>
+      <li class="tip-good">✅ 把睡眠拆成小段，由家人承担家务和非喂养照护</li>
+      <li class="tip-good">✅ 产后复查不是唯一节点，有问题可随时提前联系医生</li>
+      <li class="tip-bad">❌ 未经评估不要急于高强度运动或节食减重</li>
+    </ul>`
+  },
+  {
+    cat:'newborn', catLabel:'新生儿照护', title:'安全睡眠的六条底线', icon:'🌙',
+    body:`<ul>
+      <li class="tip-good">✅ 每次睡眠都让宝宝仰卧</li>
+      <li class="tip-good">✅ 使用平坦、坚实、符合标准的独立睡眠表面</li>
+      <li class="tip-good">✅ 同室不同床，婴儿床靠近照护者</li>
+      <li class="tip-good">✅ 睡眠区只留合身床单，不放枕头、被子、玩偶和围栏垫</li>
+      <li class="tip-good">✅ 避免过热，室内不吸烟</li>
+      <li class="tip-bad">❌ 沙发、成人床、摇椅和安全座椅都不是常规睡眠场所</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">参考：AAP 2022 Safe Sleep Recommendations</p>`
+  },
+  {
+    cat:'newborn', catLabel:'新生儿照护', title:'喂养是否充足怎么看', icon:'🍼',
+    body:`<ul>
+      <li class="tip-good">✅ 跟随饥饿信号喂养，不必强行按固定钟点</li>
+      <li class="tip-good">✅ 观察有效吞咽、喂后满足感、尿便和体重趋势</li>
+      <li class="tip-good">✅ 母乳喂养困难时尽早联系儿科或专业哺乳支持</li>
+      <li class="tip-good">✅ 使用配方奶时严格按包装比例和安全用水要求冲调</li>
+      <li class="tip-bad">❌ 不自行稀释或加浓配方奶，不给1岁内宝宝喂蜂蜜</li>
+      <li class="tip-bad">🚨 明显嗜睡叫不醒、持续拒奶、尿量明显减少应及时就医</li>
+    </ul>`
+  },
+  {
+    cat:'newborn', catLabel:'新生儿照护', title:'宝宝出现这些情况要尽快就医', icon:'🌡️',
+    body:`<ul>
+      <li class="tip-bad">🚨 3个月以内肛温 ≥38°C</li>
+      <li class="tip-bad">🚨 呼吸费力、呻吟、口唇发青或呼吸暂停</li>
+      <li class="tip-bad">🚨 难以唤醒、抽搐、反应明显变差</li>
+      <li class="tip-bad">🚨 持续拒奶、频繁喷射性呕吐或绿色呕吐物</li>
+      <li class="tip-bad">🚨 黄疸迅速加深，或伴嗜睡、吃奶差</li>
+      <li class="tip-bad">🚨 尿量明显减少或有脱水表现</li>
+    </ul>
+    <p style="color:var(--text-light);font-size:11px;margin-top:6px">新生儿病情变化快，拿不准时优先联系儿科医生或急诊。</p>`
   }
 ];
 
@@ -972,8 +1191,10 @@ const KNOWLEDGE_CATEGORIES = [
   { id:'exercise', label:'🧘 运动' },
   { id:'checkup', label:'🏥 产检' },
   { id:'taboo', label:'⚠️ 禁忌' },
-  { id:'wedding', label:'💒 婚礼' },
-  { id:'culture', label:'🏔️ 民俗' },
+  { id:'postpartum', label:'🌿 产后' },
+  { id:'newborn', label:'👶 新生儿' },
+  { id:'wedding', label:'💒 婚礼回忆' },
+  { id:'culture', label:'🏔️ 民俗回忆' },
 ];
 
 // ===================================================================
@@ -1018,6 +1239,28 @@ const BAG_DATA = {
       { id:'bb13', name:'肚脐贴/护脐带', note:'脐带护理' },
       { id:'bb14', name:'婴儿隔尿垫', note:'多备几块' },
     ]
+  },
+  recovery: {
+    title:'🌿 产后恢复用品',
+    items:[
+      { id:'brc1', name:'医生建议的止痛与伤口护理用品', note:'按医嘱准备' },
+      { id:'brc2', name:'哺乳枕或舒适支撑枕', note:'减轻手臂负担' },
+      { id:'brc3', name:'乳头护理用品', note:'按实际需要' },
+      { id:'brc4', name:'便于单手食用的营养餐与加餐', note:'家属准备' },
+      { id:'brc5', name:'产后复查与儿科首诊预约信息', note:'写入日历' },
+      { id:'brc6', name:'体温计和家庭常用急救用品', note:'放固定位置' }
+    ]
+  },
+  support: {
+    title:'🤝 陪护人任务',
+    items:[
+      { id:'bs1', name:'保存医院、急诊和家属联系电话', note:'纸质+手机' },
+      { id:'bs2', name:'熟悉产后与新生儿危险信号', note:'全家一起看' },
+      { id:'bs3', name:'安排做饭、清洁和夜间轮班', note:'提前分工' },
+      { id:'bs4', name:'管理访客、洗手与不亲吻宝宝规则', note:'统一告知' },
+      { id:'bs5', name:'学习婴儿心肺复苏和窒息急救', note:'正规课程' },
+      { id:'bs6', name:'关注妈妈情绪并主动提供休息时间', note:'每日沟通' }
+    ]
   }
 };
 
@@ -1046,34 +1289,58 @@ function renderHome() {
   const lmp = new Date(state.lmpDate);
   const edd = getEDD(state.lmpDate);
   const weddingDate = new Date(state.weddingDate);
+  const birthDate = state.babyBirthDate ? new Date(state.babyBirthDate) : null;
+  const postpartumDays = birthDate ? Math.max(0, daysBetween(birthDate, today)) : null;
 
   // Countdown
-  const weddingDays = daysBetween(today, weddingDate);
   const babyDays = daysBetween(today, edd);
-  document.getElementById('cd-wedding').textContent = Math.max(0, weddingDays);
-  document.getElementById('cd-baby').textContent = Math.max(0, babyDays);
+  document.getElementById('baby-countdown-label').textContent = birthDate ? '宝宝已出生' : '距离预产期';
+  document.getElementById('cd-baby').textContent = birthDate ? postpartumDays : Math.max(0, babyDays);
+  document.getElementById('baby-countdown-unit').textContent = birthDate ? '天' : '天';
 
   // Week info
   const wk = getWeekDay(state.lmpDate, today);
-  document.getElementById('week-badge').textContent = `孕 ${wk.week} 周 ${wk.day} 天`;
+  document.getElementById('week-countdown-label').textContent = birthDate ? '产后周数' : '当前孕周';
+  document.getElementById('cd-week').textContent = birthDate ? Math.floor(postpartumDays / 7) : Math.min(40, wk.week);
+  document.getElementById('week-badge').textContent = birthDate
+    ? `宝宝 ${Math.floor(postpartumDays / 7)} 周 ${postpartumDays % 7} 天`
+    : `孕 ${wk.week} 周 ${wk.day} 天`;
 
   const trimester = wk.week < 13 ? '孕早期' : wk.week < 28 ? '孕中期' : '孕晚期';
-  document.getElementById('week-sub').textContent =
-    `${trimester} · 预产期 ${formatDate(edd)}`;
+  document.getElementById('week-sub').textContent = birthDate
+    ? `产后恢复期 · 出生于 ${formatDate(birthDate)}`
+    : `${trimester} · 预产期 ${formatDate(edd)}`;
 
   // Baby size
   const sizeIdx = Math.min(wk.week, 40);
   const size = BABY_SIZES[sizeIdx] || BABY_SIZES[1];
-  document.getElementById('baby-emoji').textContent = size.emoji;
-  document.getElementById('baby-size-title').textContent =
-    `现在宝宝像一个${size.name}`;
-  document.getElementById('baby-size-desc').textContent =
-    `约 ${size.size} · ${size.desc}`;
+  document.getElementById('baby-emoji').textContent = birthDate ? '👶' : size.emoji;
+  document.getElementById('baby-size-title').textContent = birthDate ? '欢迎宝宝来到这个家' : `现在宝宝像一个${size.name}`;
+  document.getElementById('baby-size-desc').textContent = birthDate
+    ? '关注喂养、尿便、体重与安全睡眠'
+    : `约 ${size.size} · ${size.desc}`;
 
   // Progress
-  const pct = Math.min(100, Math.max(0, Math.round((wk.totalDays / 280) * 100)));
+  const pct = birthDate
+    ? Math.min(100, Math.round((postpartumDays / 42) * 100))
+    : Math.min(100, Math.max(0, Math.round((wk.totalDays / 280) * 100)));
+  document.getElementById('progress-title').textContent = birthDate ? '产后6周恢复期' : '孕期进度';
   document.getElementById('progress-pct').textContent = pct + '%';
   document.getElementById('progress-fill').style.width = pct + '%';
+
+  const priorities = birthDate
+    ? ['每次睡眠都仰卧，使用平坦坚实的独立睡眠表面', '记录喂养、尿便和体重变化，异常及时联系儿科', '关注妈妈出血、伤口、发热与情绪危险信号']
+    : wk.week < 28
+    ? ['按医嘱完成 24-28 周糖耐量检查', '开始规律关注胎动，建立每日观察习惯', '确认分娩医院、月嫂或主要照护支持']
+    : wk.week < 36
+      ? ['每天在固定时段关注胎动，明显减少立即就医', '按时产检，准备待产包与入院证件', '学习新生儿喂养、睡眠安全和脐带护理']
+      : ['每周产检并留意见红、破水和规律宫缩', '待产包、安全座椅和医院路线全部就绪', '明确产后 6 周支持计划与紧急联系人'];
+  document.getElementById('priority-list').innerHTML = priorities.map(item => `<li>${item}</li>`).join('');
+
+  const weddingDaysAgo = daysBetween(weddingDate, today);
+  document.getElementById('wedding-memory').textContent = weddingDaysAgo >= 0
+    ? `婚礼已过去 ${weddingDaysAgo} 天。两地婚礼的记忆留在这里，现在把精力留给妈妈和宝宝。`
+    : `距离婚礼还有 ${Math.abs(weddingDaysAgo)} 天。`;
 }
 
 // ===================================================================
@@ -1081,13 +1348,15 @@ function renderHome() {
 // ===================================================================
 function renderTimeline() {
   const container = document.getElementById('timeline-container');
-  const now = new Date();
-  const currentMonth = now.getMonth() + 1; // 1-12
-  const currentYear = now.getFullYear();
+  const wk = getWeekDay(state.lmpDate, new Date());
+  const postpartumDays = state.babyBirthDate
+    ? Math.max(0, daysBetween(new Date(state.babyBirthDate), new Date()))
+    : null;
+  const phaseWeek = postpartumDays === null ? wk.week : 43 + Math.floor(postpartumDays / 7);
 
   container.innerHTML = TIMELINE_DATA.map((item, idx) => {
-    const isPast = (currentYear > 2026) || (currentYear === 2026 && currentMonth > item.month);
-    const isCurrent = currentYear === 2026 && currentMonth === item.month;
+    const isPast = phaseWeek > item.endWeek;
+    const isCurrent = phaseWeek >= item.startWeek && phaseWeek <= item.endWeek;
     const statusClass = isCurrent ? 'current' : isPast ? 'past' : '';
 
     return `
@@ -1096,15 +1365,15 @@ function renderTimeline() {
         <div class="tl-month">${item.label} <span style="font-weight:400;color:var(--text-light);font-size:12px">${item.weeks}</span></div>
         <div class="tl-content">
           <div class="tl-col pregnancy">
-            <h4>🤰 孕期</h4>
+            <h4>🤰 妈妈 / 医疗</h4>
             <ul>${item.pregnancy.map(p => `<li>· ${p}</li>`).join('')}</ul>
           </div>
           ${item.wedding.length ? `<div class="tl-col wedding-col">
-            <h4>💍 婚礼</h4>
+            <h4>👨‍👩‍👧 家庭 / 宝宝</h4>
             <ul>${item.wedding.map(w => `<li>· ${w}</li>`).join('')}</ul>
           </div>` : `<div class="tl-col wedding-col" style="opacity:.4">
-            <h4>💍 婚礼</h4>
-            <ul><li style="color:var(--text-light)">· 安心待产中~</li></ul>
+            <h4>👨‍👩‍👧 家庭 / 宝宝</h4>
+            <ul><li style="color:var(--text-light)">· 按家庭节奏逐步准备</li></ul>
           </div>`}
         </div>
         ${item.detail ? `<button class="tl-toggle" onclick="toggleTimeline(${idx})">📋 查看详情</button>
@@ -1120,6 +1389,43 @@ function toggleTimeline(idx) {
     const btn = el.querySelector('.tl-toggle');
     if (btn) btn.textContent = el.classList.contains('expanded') ? '📋 收起详情' : '📋 查看详情';
   }
+}
+
+function openWeddingMemory() {
+  const memoryItems = ARCHIVE_TIMELINE_DATA.filter(item => item.wedding.length);
+  const expenseTotal = WEDDING_EXPENSE_ARCHIVE.categories.reduce((total, category) =>
+    total + category.items.reduce((categoryTotal, item) => categoryTotal + item.amount, 0), 0);
+  const expenseCount = WEDDING_EXPENSE_ARCHIVE.categories.reduce((total, category) => total + category.items.length, 0);
+  document.getElementById('wedding-expense-summary').innerHTML = `
+    <div class="memory-expense-summary">
+      <span>💰 已记录结婚及同期筹备支出</span>
+      <strong>¥${expenseTotal.toLocaleString()}</strong>
+      <small>${expenseCount} 笔明细 · 线上数据快照 ${WEDDING_EXPENSE_ARCHIVE.capturedAt}</small>
+    </div>`;
+  document.getElementById('wedding-expense-list').innerHTML = WEDDING_EXPENSE_ARCHIVE.categories.map(category => {
+    const categoryTotal = category.items.reduce((total, item) => total + item.amount, 0);
+    return `<section class="memory-expense-category">
+      <div class="memory-expense-heading">
+        <span>${category.icon} ${category.label}</span>
+        <span>¥${categoryTotal.toLocaleString()}</span>
+      </div>
+      ${category.items.map(item => `<div class="memory-expense-row">
+        <span>${item.name}</span><span>¥${item.amount.toLocaleString()}</span>
+      </div>`).join('')}
+    </section>`;
+  }).join('');
+  document.getElementById('wedding-memory-list').innerHTML = memoryItems.map(item => `
+    <section class="memory-event">
+      <h3>${item.label}</h3>
+      <ul>${item.wedding.map(event => `<li>· ${event}</li>`).join('')}</ul>
+      ${item.detail ? `<p class="memory-event-detail">${item.detail}</p>` : ''}
+    </section>
+  `).join('');
+  document.getElementById('wedding-memory-modal').classList.add('active');
+}
+
+function closeWeddingMemory() {
+  document.getElementById('wedding-memory-modal').classList.remove('active');
 }
 
 // ===================================================================
@@ -1149,7 +1455,7 @@ function renderChecklist() {
             <div class="check-item ${state.checklist[it.id] ? 'done' : ''}" onclick="toggleCheck('${it.id}')">
               <div class="check-box"></div>
               <span class="check-label">${it.label}</span>
-              <span class="check-tag ${it.tag === 'prenatal' ? 'prenatal' : 'wedding-tag'}">${it.tag === 'prenatal' ? '产检' : '婚礼'}</span>
+              <span class="check-tag ${it.tag === 'prenatal' ? 'prenatal' : 'wedding-tag'}">${it.tag === 'prenatal' ? '医疗' : '照护'}</span>
             </div>
           `).join('')}
         </div>
@@ -1253,7 +1559,7 @@ function toggleBag(itemId) {
 // ===================================================================
 // 14. BUDGET DATA & RENDER
 // ===================================================================
-const BUDGET_DATA = [
+const ARCHIVE_BUDGET_DATA = [
   {
     cat: 'dress', icon: '👗', label: '婚纱服装',
     items: [
@@ -1332,6 +1638,119 @@ const BUDGET_DATA = [
     items: [
       { id:'bo1', name:'请柬（电子+纸质，两地）', est:'300-800' },
       { id:'bo2', name:'婚房布置', est:'500-2000' },
+    ]
+  }
+];
+
+// Verified snapshot of the production budget before the app switched to pregnancy-focused budgeting.
+const WEDDING_EXPENSE_ARCHIVE = {
+  capturedAt: '2026-08-14',
+  categories: [
+    { icon:'👗', label:'婚纱服装', items:[
+      { name:'汉式主婚纱（租赁/购买）', amount:880 },
+      { name:'柯尔克孜传统嫁衣+高帽', amount:3000 },
+      { name:'新郎西服', amount:3080 },
+      { name:'新郎柯尔克孜礼服+白毡帽', amount:1500 },
+      { name:'新娘鞋（平底/低跟）', amount:300 },
+      { name:'配饰（头纱、银饰等）', amount:980 }
+    ]},
+    { icon:'📸', label:'婚纱照', items:[
+      { name:'婚纱照套餐', amount:11500 }
+    ]},
+    { icon:'🏔️', label:'克州婚宴（柯尔克孜式）', items:[
+      { name:'婚宴20桌（整羊+手抓饭等）', amount:35000 },
+      { name:'场地布置（毡房/宴会厅）', amount:2000 },
+      { name:'库姆孜艺人+歌舞表演', amount:2000 }
+    ]},
+    { icon:'💒', label:'婚庆策划', items:[
+      { name:'克州摄影摄像', amount:3000 },
+      { name:'接亲红包/伴郎伴娘礼', amount:1800 }
+    ]},
+    { icon:'🐎', label:'聘礼·首饰（卡凌）', items:[
+      { name:'牲畜（马/牛/羊）', amount:30000 },
+      { name:'布匹/衣物', amount:3000 },
+      { name:'三金/五金首饰', amount:70000 },
+      { name:'婚戒（对戒）', amount:45300 }
+    ]},
+    { icon:'✈️', label:'两地交通住宿', items:[
+      { name:'机票（成都↔克州，多人）', amount:50000 },
+      { name:'克州住宿（约一周）', amount:1500 },
+      { name:'当地租车/交通', amount:500 }
+    ]},
+    { icon:'🏥', label:'婚礼同期孕产准备', items:[
+      { name:'孕期产检费用', amount:7000 },
+      { name:'分娩费用', amount:10000 },
+      { name:'月嫂（26天）', amount:20000 },
+      { name:'待产包采购', amount:1500 }
+    ]},
+    { icon:'📦', label:'其他', items:[
+      { name:'请柬（电子+纸质，两地）', amount:300 },
+      { name:'婚房布置', amount:500 }
+    ]}
+  ]
+};
+
+const BUDGET_DATA = [
+  {
+    cat:'prenatal', icon:'🏥', label:'孕晚期检查',
+    items:[
+      { id:'pn1', name:'常规产检与化验', est:'1000-3000' },
+      { id:'pn2', name:'超声与胎心监护', est:'500-2000' },
+      { id:'pn3', name:'医生建议的药品与补充剂', est:'300-1500' },
+      { id:'pn4', name:'产检交通与陪诊', est:'300-1500' }
+    ]
+  },
+  {
+    cat:'delivery', icon:'🏨', label:'分娩与住院',
+    items:[
+      { id:'dv1', name:'分娩住院自付费用', est:'3000-15000' },
+      { id:'dv2', name:'分娩镇痛或麻醉相关费用', est:'1000-4000' },
+      { id:'dv3', name:'单间或陪护费用', est:'1000-6000' },
+      { id:'dv4', name:'待产包与入院消耗品', est:'800-2500' }
+    ]
+  },
+  {
+    cat:'postpartum', icon:'🌿', label:'产后恢复支持',
+    items:[
+      { id:'pp1', name:'月嫂或专业照护支持', est:'8000-20000' },
+      { id:'pp2', name:'产后复查与康复评估', est:'500-3000' },
+      { id:'pp3', name:'哺乳支持或吸奶设备', est:'500-3000' },
+      { id:'pp4', name:'产后餐食与家务支持', est:'1500-6000' }
+    ]
+  },
+  {
+    cat:'feeding', icon:'🍼', label:'宝宝喂养',
+    items:[
+      { id:'fd1', name:'奶瓶与清洁消毒用品', est:'300-1200' },
+      { id:'fd2', name:'配方奶应急储备', est:'300-1500' },
+      { id:'fd3', name:'母乳储存用品', est:'200-1000' },
+      { id:'fd4', name:'喂养与体重随访', est:'200-1000' }
+    ]
+  },
+  {
+    cat:'newborn', icon:'👶', label:'新生儿基础用品',
+    items:[
+      { id:'nb1', name:'衣物、包被与洗护用品', est:'800-2500' },
+      { id:'nb2', name:'纸尿裤与日常消耗品', est:'1000-3000' },
+      { id:'nb3', name:'婴儿床与合规床垫', est:'1000-4000' },
+      { id:'nb4', name:'推车与外出用品', est:'1000-5000' }
+    ]
+  },
+  {
+    cat:'safety', icon:'🛡️', label:'安全与健康',
+    items:[
+      { id:'sf1', name:'后向式婴儿安全座椅', est:'1000-4000' },
+      { id:'sf2', name:'体温计与家庭急救用品', est:'200-800' },
+      { id:'sf3', name:'婴儿急救正规课程', est:'0-1000' },
+      { id:'sf4', name:'儿科体检与疫苗相关自费', est:'500-3000' }
+    ]
+  },
+  {
+    cat:'reserve', icon:'🧾', label:'医疗应急储备',
+    items:[
+      { id:'rv1', name:'产妇医疗应急金', est:'5000-15000' },
+      { id:'rv2', name:'宝宝医疗应急金', est:'5000-15000' },
+      { id:'rv3', name:'临时交通与住宿', est:'1000-5000' }
     ]
   }
 ];
@@ -1433,7 +1852,7 @@ function renderBudget() {
     </div>`;
   });
 
-  html += `<div class="budget-note">💡 金额只保存在你的设备上，不会上传</div>`;
+  html += `<div class="budget-note">💡 先预留医疗应急金，再安排可选消费</div>`;
   container.innerHTML = html;
 }
 
@@ -1520,6 +1939,7 @@ function addBudgetItem(catId) {
 function openSettings() {
   document.getElementById('input-lmp').value = state.lmpDate;
   document.getElementById('input-wedding').value = state.weddingDate;
+  document.getElementById('input-birth').value = state.babyBirthDate || '';
   document.getElementById('settings-modal').classList.add('active');
 }
 
@@ -1530,8 +1950,10 @@ function closeSettings() {
 function saveSettings() {
   const newLmp = document.getElementById('input-lmp').value;
   const newWedding = document.getElementById('input-wedding').value;
+  const newBirth = document.getElementById('input-birth').value;
   if (newLmp) state.lmpDate = newLmp;
   if (newWedding) state.weddingDate = newWedding;
+  state.babyBirthDate = newBirth;
   saveState();
   renderAll();
   closeSettings();
@@ -1549,6 +1971,10 @@ function resetAll() {
 // Close modal when clicking overlay
 document.getElementById('settings-modal').addEventListener('click', function(e) {
   if (e.target === this) closeSettings();
+});
+
+document.getElementById('wedding-memory-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeWeddingMemory();
 });
 
 // ===================================================================
